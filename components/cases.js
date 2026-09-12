@@ -13,8 +13,10 @@ const SHORT = { unlock: "单次解锁", subscription: "包月订阅", hybrid: "�
 const fmt = (v, d = 2) => (v === null || v === undefined ? "—" : Number(v).toFixed(d));
 
 export default function Cases({ cases, presets, onLoad }) {
+  // presets 是 data/presets.json 的整个对象：{ alpha, presets: [...] }，不是数组。
+  // 第一版这里写成 [...presets]，把对象当数组展开，整页白屏。
   const presetById = useMemo(
-    () => Object.fromEntries([...presets].map((p) => [p.id, p])),
+    () => Object.fromEntries((presets.presets ?? []).map((p) => [p.id, p])),
     [presets],
   );
 
