@@ -9,7 +9,7 @@
     "test-model": "node scripts/test-model.mjs",
     "sweep": "node scripts/sweep.mjs",
     "sanity": "node scripts/sanity.mjs",
-    "check": "node scripts/test-model.mjs && node scripts/sanity.mjs && node scripts/sweep.mjs"
+    "check": "npm run test-model && npm run sanity && npm run sweep"
   },
   "dependencies": {
     "next": "15.5.3",
