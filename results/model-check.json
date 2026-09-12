@@ -1,0 +1,219 @@
+{
+  "generatedBy": "scripts/test-model.mjs",
+  "generatedAt": "2026-09-12T18:06:44.352Z",
+  "summary": {
+    "total": 26,
+    "passed": 26,
+    "failed": 0
+  },
+  "cases": [
+    {
+      "name": "零流失曲线：任意月的月初在册比例都是 1",
+      "expected": 1,
+      "actual": 1,
+      "tolerance": 1e-9,
+      "pass": true,
+      "note": "r(d) = 1 × d^0，斜率 OLS 应为 0"
+    },
+    {
+      "name": "零流失曲线：12 个月生存数组全为 1",
+      "expected": 12,
+      "actual": 12,
+      "tolerance": 1e-9,
+      "pass": true,
+      "note": "S_k ≡ 1"
+    },
+    {
+      "name": "零流失 + 全员付费 + 无抽成 + 月费 10 → 12 月 LTV = 120",
+      "expected": 120,
+      "actual": 120,
+      "tolerance": 1e-9,
+      "pass": true,
+      "note": "Σ_{k=1..12} 10 = 120"
+    },
+    {
+      "name": "同上 → 回本月份为 null（CAC = 0）",
+      "expected": null,
+      "actual": null,
+      "tolerance": 0,
+      "pass": true,
+      "note": "CAC 为 0 时首月即回本，但约定 CAC ≤ 0 记为 null（无需回本）"
+    },
+    {
+      "name": "零流失 + 50% 转化 + 月费 10 → 12 月 LTV = 60",
+      "expected": 60,
+      "actual": 60,
+      "tolerance": 1e-9,
+      "pass": true,
+      "note": "10 × 0.5 × 12 = 60"
+    },
+    {
+      "name": "抽成 30% → 12 月 LTV = 42",
+      "expected": 42,
+      "actual": 42,
+      "tolerance": 1e-9,
+      "pass": true,
+      "note": "60 × 0.7 = 42"
+    },
+    {
+      "name": "折现率 10%/月 → 12 月 LTV = 10 × 年金因子",
+      "expected": 74.95061005186074,
+      "actual": 74.95061005186074,
+      "tolerance": 1e-9,
+      "pass": true,
+      "note": "年金因子 = 7.495061"
+    },
+    {
+      "name": "零流失 + 全员付费 + 月解锁 3 集 × ¥1 → 12 月 LTV = 36",
+      "expected": 36,
+      "actual": 36,
+      "tolerance": 1e-9,
+      "pass": true,
+      "note": "3 × 12 = 36"
+    },
+    {
+      "name": "免费 25 集（=1 个月白嫖期）→ 只有 11 个月有收入，LTV = 33",
+      "expected": 33,
+      "actual": 33,
+      "tolerance": 1e-9,
+      "pass": true,
+      "note": "第 1 月 window = 0，2~12 月 window = 1"
+    },
+    {
+      "name": "零流失 + 月费 10 + CAC 25 → 回本月份 = 3",
+      "expected": 3,
+      "actual": 3,
+      "tolerance": 0,
+      "pass": true,
+      "note": "累计 10 / 20 / 30，第 3 个月首次越过 25"
+    },
+    {
+      "name": "同上 → LTV/CAC = 120 / 25 = 4.8",
+      "expected": 4.8,
+      "actual": 4.8,
+      "tolerance": 1e-9,
+      "pass": true,
+      "note": "120 ÷ 25"
+    },
+    {
+      "name": "每月新增 1000 人 + 月费 10 + 全员付费 → 12 月累计收入 = 780,000",
+      "expected": 780000,
+      "actual": 780000,
+      "tolerance": 0.000001,
+      "pass": true,
+      "note": "1000 × 10 × (1+2+…+12) = 1000 × 10 × 78"
+    },
+    {
+      "name": "同上 → 第 12 个月单月收入 = 1000 × 10 × 12 = 120,000",
+      "expected": 120000,
+      "actual": 120000,
+      "tolerance": 0.000001,
+      "pass": true,
+      "note": "单月收入与累计收入相差一个数量级，字段名已区分"
+    },
+    {
+      "name": "同上 → 第 12 月存量 = 1000 × 12 = 12,000",
+      "expected": 12000,
+      "actual": 12000,
+      "tolerance": 0.000001,
+      "pass": true,
+      "note": "零流失，12 个批次全在"
+    },
+    {
+      "name": "严格幂律锚点 → 拟合斜率回到 −0.5",
+      "expected": -0.5,
+      "actual": -0.5,
+      "tolerance": 0.000001,
+      "pass": true,
+      "note": "r(d) = 0.5·d^−0.5 的 OLS 斜率应精确还原"
+    },
+    {
+      "name": "严格幂律锚点 → 拟合 RMSE ≈ 0",
+      "expected": 0,
+      "actual": 0,
+      "tolerance": 0.000001,
+      "pass": true,
+      "note": "锚点本身在曲线上，残差为 0"
+    },
+    {
+      "name": "混合机制 switchRate = 0 → 与纯解锁 LTV 完全相等（36）",
+      "expected": 36,
+      "actual": 36,
+      "tolerance": 1e-9,
+      "pass": true,
+      "note": "状态机退化检查：没人转订阅时两条路径必须重合"
+    },
+    {
+      "name": "混合机制 switchRate = 1 → LTV 高于纯解锁的 36",
+      "expected": true,
+      "actual": true,
+      "tolerance": 0,
+      "pass": true,
+      "note": "实际 861.0000，月费 110 高于单集 1 元，转订阅后必然更赚"
+    },
+    {
+      "name": "月费 10 → 20，订阅 LTV 精确翻倍（价格线性）",
+      "expected": 60,
+      "actual": 60,
+      "tolerance": 1e-9,
+      "pass": true,
+      "note": "30.0000 → 60.0000"
+    },
+    {
+      "name": "试用 15 天 → 12 月 LTV = 5 + 10 × 11 = 115",
+      "expected": 115,
+      "actual": 115,
+      "tolerance": 1e-9,
+      "pass": true,
+      "note": "首月只计半个月费"
+    },
+    {
+      "name": "默认参数 · unlock · 逐月收入非负",
+      "expected": true,
+      "actual": true,
+      "tolerance": 0,
+      "pass": true,
+      "note": "价格为负或状态机出错时会漏到这里"
+    },
+    {
+      "name": "默认参数 · unlock · 累计 ARPU 单调不减",
+      "expected": true,
+      "actual": true,
+      "tolerance": 0,
+      "pass": true,
+      "note": "累计量减少说明有负收入项"
+    },
+    {
+      "name": "默认参数 · subscription · 逐月收入非负",
+      "expected": true,
+      "actual": true,
+      "tolerance": 0,
+      "pass": true,
+      "note": "价格为负或状态机出错时会漏到这里"
+    },
+    {
+      "name": "默认参数 · subscription · 累计 ARPU 单调不减",
+      "expected": true,
+      "actual": true,
+      "tolerance": 0,
+      "pass": true,
+      "note": "累计量减少说明有负收入项"
+    },
+    {
+      "name": "默认参数 · hybrid · 逐月收入非负",
+      "expected": true,
+      "actual": true,
+      "tolerance": 0,
+      "pass": true,
+      "note": "价格为负或状态机出错时会漏到这里"
+    },
+    {
+      "name": "默认参数 · hybrid · 累计 ARPU 单调不减",
+      "expected": true,
+      "actual": true,
+      "tolerance": 0,
+      "pass": true,
+      "note": "累计量减少说明有负收入项"
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "_note": "合成案例库。留存曲线与参数均为合成，用于演示不同场景下模拟器给出的结论差异。点评是基于模型输出的判断，不构成对任何具体产品的建议。",
+  "version": 1,
+  "cases": [
+    {
+      "id": "case-micro-drama-sub",
+      "title": "案例一：短剧 App 从单集解锁转订阅",
+      "scenario": "一个 20 人团队的短剧 App，此前一直按集收费。收入和留存都在下滑，团队想加买量，但先用手上的数据问了另一个问题：是不是付费机制本身错了。",
+      "retentionPreset": "drama",
+      "params": {
+        "common": { "cac": 22, "platformCut": 0.3, "newUsersPerMonth": 50000, "discountMonthly": 0 },
+        "unlock": { "pricePerUnlock": 1.0, "unlocksPerPayerMonth": 4.0, "payerShare": 0.3, "payerDecay": 0.85, "freeEpisodes": 3, "episodesPerMonth": 25 },
+        "subscription": { "monthlyPrice": 25, "trialDays": 7, "trialOptIn": 0.5, "trialToPaid": 0.35 },
+        "hybrid": { "unlockThreshold": 6, "switchRate": 0.2 }
+      },
+      "comment": "这条曲线 D30 只有个位数百分比，是很典型的『内容驱动、长尾薄』形态。模拟器大概率会告诉你解锁和混合更稳，订阅单押不划算——因为订阅要赚的是第 6 到第 12 个月的钱，而这批用户平均活不到那里。真要做订阅，得先解决留存，而不是先改付费入口。另外这类用户对『预扣费』天生敏感，试用转化率我给的 35% 已经偏乐观，实际跑出来大概率要打折，所以我的建议是先上混合档，用累计解锁次数筛出真正有意愿的人再推订阅，而不是一上来就让所有人选月费。",
+      "commentBasis": "conclusion"
+    },
+    {
+      "id": "case-tool-annual",
+      "title": "案例二：工具类产品的订阅档位",
+      "scenario": "一个效率工具的独立开发者，用户留下来之后很稳，但一直纠结月费定多少。担心定高了转化掉，定低了 LTV 撑不住 CAC。",
+      "retentionPreset": "utility",
+      "params": {
+        "common": { "cac": 40, "platformCut": 0.15, "newUsersPerMonth": 8000, "discountMonthly": 0.01 },
+        "unlock": { "pricePerUnlock": 6.0, "unlocksPerPayerMonth": 2.0, "payerShare": 0.2, "payerDecay": 0.9, "freeEpisodes": 0, "episodesPerMonth": 10 },
+        "subscription": { "monthlyPrice": 45, "trialDays": 14, "trialOptIn": 0.6, "trialToPaid": 0.4 },
+        "hybrid": { "unlockThreshold": 3, "switchRate": 0.25 }
+      },
+      "comment": "工具类的曲线平稳，用户一旦留下就按月稳定付费，这正是订阅最舒服的场景——所以三种机制里订阅大概率胜出，而且胜得干净。真正该问的不是『选哪种机制』，而是『月费落在哪个区间』。这个案例更适合直接跳到敏感性分析页去扫月费，看 LTV/CAC 在哪个价位上下穿 1。独立开发者尤其要注意 14 天试用：试用期越长转化越低，但对工具类来说试用是必要的——用户得先跑通一次真实工作流才会付费。我的取法是宁可试用长一点、单价高一点，也不要短试用配低单价。",
+      "commentBasis": "conclusion"
+    },
+    {
+      "id": "case-social-hybrid",
+      "title": "案例三：社交产品的会员体系",
+      "scenario": "一个兴趣社区上线了会员，权益不痛不痒，付费率一直上不去。团队在讨论是砍掉会员改做单点付费（头像挂件、置顶），还是继续加码会员权益。",
+      "retentionPreset": "social",
+      "params": {
+        "common": { "cac": 15, "platformCut": 0.05, "newUsersPerMonth": 120000, "discountMonthly": 0 },
+        "unlock": { "pricePerUnlock": 3.0, "unlocksPerPayerMonth": 1.5, "payerShare": 0.08, "payerDecay": 0.92, "freeEpisodes": 0, "episodesPerMonth": 5 },
+        "subscription": { "monthlyPrice": 18, "trialDays": 7, "trialOptIn": 0.25, "trialToPaid": 0.3 },
+        "hybrid": { "unlockThreshold": 2, "switchRate": 0.3 }
+      },
+      "comment": "社交产品的收入问题往往不是『机制选错了』，是『付费点没找对』。这个案例里我把 payerShare 压得很低（8%），因为社区类用户对为功能付费的意愿本来就弱。模拟器会显示混合机制占优——它不是因为它神奇，而是因为它把 8% 里意愿最强的那一小撮人单独捞出来收月费。真正该做的判断是：那 8% 的人到底为什么掏钱。如果是为了『身份标识』，单点付费就够；如果是为了『持续的关系链权益』，会员才有意义。机制只决定怎么收钱，不决定用户为什么要给。",
+      "commentBasis": "conclusion"
+    },
+    {
+      "id": "case-no-retention",
+      "title": "案例四（反例）：留存很差的工具，先别动定价",
+      "scenario": "一个刚上线的工具，D30 只有 3%。创始人在纠结月费定 9.9 还是 19.9。",
+      "retentionPreset": "custom",
+      "customRetention": {
+        "anchors": [
+          { "day": 1, "retention": 0.2 },
+          { "day": 7, "retention": 0.08 },
+          { "day": 30, "retention": 0.03 },
+          { "day": 90, "retention": 0.012 },
+          { "day": 180, "retention": 0.006 }
+        ],
+        "alpha": 0.5
+      },
+      "params": {
+        "common": { "cac": 12, "platformCut": 0.15, "newUsersPerMonth": 3000, "discountMonthly": 0 },
+        "unlock": { "pricePerUnlock": 5.0, "unlocksPerPayerMonth": 1.2, "payerShare": 0.15, "payerDecay": 0.85, "freeEpisodes": 0, "episodesPerMonth": 8 },
+        "subscription": { "monthlyPrice": 19.9, "trialDays": 7, "trialOptIn": 0.4, "trialToPaid": 0.3 },
+        "hybrid": { "unlockThreshold": 2, "switchRate": 0.2 }
+      },
+      "comment": "这是个反例，放进来就是为了说明模拟器解决不了什么问题。D30 = 3% 时三种机制的 LTV 都会低到回不了本——此时把月费从 9.9 调到 19.9 是在装饰一具尸体。任何定价参数都乘在一个趋近于零的留存上，结果还是趋近于零。这时候唯一的动作是回到产品本身：为什么用户第二天就不来了。等 D30 能稳定到 10% 以上，再回来调这个模拟器。这也是我把这条案例放在最后的原因——它提醒的是工具的能力边界。",
+      "commentBasis": "conclusion"
+    }
+  ]
+}

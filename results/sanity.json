@@ -1,0 +1,163 @@
+{
+  "generatedBy": "scripts/sanity.mjs",
+  "generatedAt": "2026-09-12T18:06:44.427Z",
+  "summary": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0
+  },
+  "equivalencePrice": {
+    "pricePerUnlock": 1,
+    "unlocksPerPayerMonth": 3,
+    "impliedMonthlyPrice": 3
+  },
+  "platformCutRatios": {
+    "unlock": 0.7000000000000001,
+    "subscription": 0.7000000000000001,
+    "hybrid": 0.7000000000000001
+  },
+  "realCurveLtv": [
+    {
+      "kind": "unlock",
+      "ltv12": 9.35199620864859,
+      "upperBound": 40.85985228280602,
+      "withinBound": true
+    },
+    {
+      "kind": "subscription",
+      "ltv12": 16.63983815227037,
+      "upperBound": 40.85985228280602,
+      "withinBound": true
+    },
+    {
+      "kind": "hybrid",
+      "ltv12": 13.759529050606965,
+      "upperBound": 40.85985228280602,
+      "withinBound": true
+    }
+  ],
+  "discountCurve": [
+    {
+      "rate": 0,
+      "ltv12": 16.63983815227037
+    },
+    {
+      "rate": 0.05,
+      "ltv12": 14.151257146977352
+    },
+    {
+      "rate": 0.1,
+      "ltv12": 12.443699857955716
+    }
+  ],
+  "checks": [
+    {
+      "name": "等价定价（¥1/集 × 3 集 ≡ ¥3/月）· 零流失 → 解锁与订阅 LTV 一致",
+      "a": 36,
+      "b": 36,
+      "relativeDiff": 0,
+      "relTolerance": 1e-9,
+      "pass": true,
+      "note": "两条收入路径在零流失下必须给出同一个数"
+    },
+    {
+      "name": "同上 → 混合（无人转订阅）与解锁一致",
+      "a": 36,
+      "b": 36,
+      "relativeDiff": 0,
+      "relTolerance": 1e-9,
+      "pass": true,
+      "note": "混合机制退化时应与纯解锁重合"
+    },
+    {
+      "name": "级联守恒 · unlock · 累计收入 = 新增用户数 × Σ revUnit",
+      "a": 36000,
+      "b": 36000,
+      "relativeDiff": 0,
+      "relTolerance": 1e-9,
+      "pass": true,
+      "note": "批次下标写错会在这里露馅"
+    },
+    {
+      "name": "级联守恒 · subscription · 累计收入 = 新增用户数 × Σ revUnit",
+      "a": 36000,
+      "b": 36000,
+      "relativeDiff": 0,
+      "relTolerance": 1e-9,
+      "pass": true,
+      "note": "批次下标写错会在这里露馅"
+    },
+    {
+      "name": "级联守恒 · hybrid · 累计收入 = 新增用户数 × Σ revUnit",
+      "a": 36000,
+      "b": 36000,
+      "relativeDiff": 0,
+      "relTolerance": 1e-9,
+      "pass": true,
+      "note": "批次下标写错会在这里露馅"
+    },
+    {
+      "name": "抽成一致性 · unlock · 抽成 30% 后 LTV 恰好 × 0.7",
+      "a": 0.7000000000000001,
+      "b": 0.7,
+      "relativeDiff": 1.5860328923216522e-16,
+      "relTolerance": 1e-9,
+      "pass": true,
+      "note": "三种机制共用同一个 keep 系数，比例必须一致"
+    },
+    {
+      "name": "抽成一致性 · subscription · 抽成 30% 后 LTV 恰好 × 0.7",
+      "a": 0.7000000000000001,
+      "b": 0.7,
+      "relativeDiff": 1.5860328923216522e-16,
+      "relTolerance": 1e-9,
+      "pass": true,
+      "note": "三种机制共用同一个 keep 系数，比例必须一致"
+    },
+    {
+      "name": "抽成一致性 · hybrid · 抽成 30% 后 LTV 恰好 × 0.7",
+      "a": 0.7000000000000001,
+      "b": 0.7,
+      "relativeDiff": 1.5860328923216522e-16,
+      "relTolerance": 1e-9,
+      "pass": true,
+      "note": "三种机制共用同一个 keep 系数，比例必须一致"
+    },
+    {
+      "name": "量级上界 · unlock · LTV 不超过\"全员满额付费\"上界",
+      "a": 9.35199620864859,
+      "b": 40.85985228280602,
+      "relativeDiff": 0,
+      "relTolerance": 0,
+      "pass": true,
+      "note": "超过上界只可能是留存曲线或付费率被重复计入"
+    },
+    {
+      "name": "量级上界 · subscription · LTV 不超过\"全员满额付费\"上界",
+      "a": 16.63983815227037,
+      "b": 40.85985228280602,
+      "relativeDiff": 0,
+      "relTolerance": 0,
+      "pass": true,
+      "note": "超过上界只可能是留存曲线或付费率被重复计入"
+    },
+    {
+      "name": "量级上界 · hybrid · LTV 不超过\"全员满额付费\"上界",
+      "a": 13.759529050606965,
+      "b": 40.85985228280602,
+      "relativeDiff": 0,
+      "relTolerance": 0,
+      "pass": true,
+      "note": "超过上界只可能是留存曲线或付费率被重复计入"
+    },
+    {
+      "name": "折现单调性 · 折现率 0% → 5% → 10%，LTV 严格递减",
+      "a": 16.63983815227037,
+      "b": 12.443699857955716,
+      "relativeDiff": 0,
+      "relTolerance": 0,
+      "pass": true,
+      "note": "0%: 16.640 / 5%: 14.151 / 10%: 12.444"
+    }
+  ]
+}
