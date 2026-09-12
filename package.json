@@ -1,0 +1,21 @@
+{
+  "name": "pricing-model-sim",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test-model": "node scripts/test-model.mjs",
+    "sweep": "node scripts/sweep.mjs",
+    "sanity": "node scripts/sanity.mjs",
+    "check": "node scripts/test-model.mjs && node scripts/sanity.mjs && node scripts/sweep.mjs"
+  },
+  "dependencies": {
+    "next": "15.5.3",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "recharts": "2.15.4"
+  },
+  "type": "module"
+}
