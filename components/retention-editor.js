@@ -34,38 +34,56 @@ export default function RetentionEditor({ anchors, onChange }) {
     return `M ${pts.join(" L ")}`;
   })();
 
+  // 触摸和鼠标统一取坐标。第一版只绑了 mouse 事件，手机上整个编辑器拖不动 ——
+  // 一个「拖一下就能看到结论变化」的工具在触屏上完全失效，这是必须修的。
+  const pointOf = useCallback((e) => {
+    if (e.touches && e.touches.length > 0) {
+      return { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    }
+    if (e.changedTouches && e.changedTouches.length > 0) {
+      return { x: e.changedTouches[0].clientX, y: e.changedTouches[0].clientY };
+    }
+    return { x: e.clientX, y: e.clientY };
+  }, []);
+
   const snapTo = useCallback(
     (e) => {
       const svg = svgRef.current;
       if (!svg) return null;
+      const { x, y } = pointOf(e);
       const rect = svg.getBoundingClientRect();
-      const px = ((e.clientX - rect.left) / rect.width) * W;
-      const py = ((e.clientY - rect.top) / rect.height) * H;
+      const px = ((x - rect.left) / rect.width) * W;
+      const py = ((y - rect.top) / rect.height) * H;
       const day = Math.exp(((px - PAD.l) / (W - PAD.l - PAD.r)) * Math.log(MAX_DAY));
       const v = 1 - (py - PAD.t) / (H - PAD.t - PAD.b);
       // 横向吸附到最近的锚点日，避免拖出 5 个乱七八糟的点
+      //
+      // 吸不到的情况必须处理：鼠标在 D180 右边很远的地方按下去，clamp 之后会算到
+      // 超出 MAX_DAY 的 day，进而写到不存在的锚点上（列表保持原样，看起来像没反应）。
+      // 返回 null 让调用方忽略这次点击，比默默写一个野值好。
+      if (day < ANCHOR_DAYS[0] * 0.7 || day > MAX_DAY * 1.6) return null;
       const nearest = ANCHOR_DAYS.reduce((a, b) =>
         Math.abs(b - day) < Math.abs(a - day) ? b : a,
       );
       return { day: nearest, value: Math.min(1, Math.max(0, v)) };
     },
-    [],
+    [pointOf],
   );
 
   const onMove = useCallback(
     (e) => {
       if (!drag) return;
+      e.preventDefault();
       const s = snapTo(e);
       if (!s) return;
-      // D1 不允许超过 1，其余锚点不允许高于前一个（留存单调不增）
-      const prev = anchors.find((a) => a.day === drag - 1) ?? null;
+      // 留存单调不增：每个锚点不允许高于它前面那个（D1 除外，上限是 100%）
+      const idx = anchors.findIndex((a) => a.day === drag);
+      const prev = idx > 0 ? anchors[idx - 1] : null;
       const list = anchors.map((a) =>
         a.day === s.day
           ? {
               day: s.day,
-              retention: prev
-                ? Math.min(s.value, prev.retention)
-                : Math.min(1, s.value),
+              retention: prev ? Math.min(s.value, prev.retention) : Math.min(1, s.value),
             }
           : a,
       );
@@ -79,9 +97,15 @@ export default function RetentionEditor({ anchors, onChange }) {
     const up = () => setDrag(null);
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseup", up);
+    window.addEventListener("touchmove", onMove, { passive: false });
+    window.addEventListener("touchend", up);
+    window.addEventListener("touchcancel", up);
     return () => {
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mouseup", up);
+      window.removeEventListener("touchmove", onMove);
+      window.removeEventListener("touchend", up);
+      window.removeEventListener("touchcancel", up);
     };
   }, [drag, onMove]);
 
@@ -92,6 +116,10 @@ export default function RetentionEditor({ anchors, onChange }) {
         viewBox={`0 0 ${W} ${H}`}
         style={{ width: "100%", height: "auto", display: "block", touchAction: "none" }}
         onMouseDown={(e) => {
+          const s = snapTo(e);
+          if (s) setDrag(s.day);
+        }}
+        onTouchStart={(e) => {
           const s = snapTo(e);
           if (s) setDrag(s.day);
         }}
