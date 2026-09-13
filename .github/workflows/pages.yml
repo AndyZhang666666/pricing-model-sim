@@ -40,9 +40,8 @@ jobs:
 
       - run: npm run build
 
-      # 静态导出没有 .nojekyll 时，Pages 会忽略下划线开头的目录（_next），整站样式和脚本全丢
-      - name: Disable Jekyll
-        run: touch out/.nojekyll
+      # .nojekyll 由 scripts/postbuild.mjs 在 npm run build 里写入，
+      # 不用在这里再 touch 一次 —— 本地和 CI 走同一条路径
 
       - uses: actions/upload-pages-artifact@v3
         with:
