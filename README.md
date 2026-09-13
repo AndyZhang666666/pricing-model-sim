@@ -19,8 +19,10 @@
 
 ```bash
 npm install
-npm run dev          # 打开 http://localhost:3000
+npm run dev          # 打开 http://localhost:3000/pricing-model-sim/
 ```
+
+注意地址栏要带 `/pricing-model-sim/` 这一段：`next.config.mjs` 里设了 `basePath`（GitHub Pages 部署要求），所以本地开发时根路径 `/` 是空的，直接访问 `localhost:3000` 会 404。
 
 四个页面：
 
