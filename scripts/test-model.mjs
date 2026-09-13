@@ -421,7 +421,9 @@ const failed = cases.length - passed;
 
 const out = {
   generatedBy: "scripts/test-model.mjs",
-  generatedAt: new Date().toISOString(),
+  // 只记录日期：这些产物是确定性的（没有随机数），秒级时间戳只会让每次重跑产生
+  // 一行无意义的 git diff，掩盖真正的数据变化。
+  generatedAt: new Date().toISOString().slice(0, 10),
   summary: { total: cases.length, passed, failed },
   cases,
 };

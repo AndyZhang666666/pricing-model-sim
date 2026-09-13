@@ -1,6 +1,6 @@
 {
   "generatedBy": "scripts/sweep.mjs",
-  "generatedAt": "2026-09-13T05:07:38.953Z",
+  "generatedAt": "2026-09-13",
   "baseParams": {
     "common": {
       "newUsersPerMonth": 30000,
