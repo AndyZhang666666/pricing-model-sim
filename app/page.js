@@ -25,7 +25,7 @@ import casesData from "@/data/cases.json";
 
 const TABS = [
   { id: "retention", label: "留存曲线", sub: "第一步：定义用户" },
-  { id: "compare", label: "三机制对比", sub: "核心：该选哪种" },
+  { id: "compare", label: "三机制对比", sub: "同组假设下比较" },
   { id: "sensitivity", label: "敏感性分析", sub: "临界点在哪" },
   { id: "cases", label: "案例库", sub: "合成案例 + 点评" },
 ];
@@ -80,7 +80,7 @@ export default function Home() {
         <h1>Pricing Model Sim</h1>
         <p>
           给一条留存曲线和几个定价参数，算出「单次解锁 / 包月订阅 / 混合」三种付费机制
-          12 个月的 ARPU、LTV、回本周期，并回答一个问题：<b>你的业务该选哪种</b>。
+          12 个月的 ARPU、LTV、回本周期，比较<b>什么条件下，机制排序会改变</b>。
         </p>
         <div className="meta">
           全部计算在浏览器里完成，没有服务端 · 公式与实际口径见{" "}

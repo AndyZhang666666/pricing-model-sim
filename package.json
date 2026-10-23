@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prebuild": "node scripts/check-release.mjs",
+    "check:release": "node scripts/check-release.mjs",
     "dev": "next dev",
     "build": "next build && node scripts/postbuild.mjs",
     "start": "next start",

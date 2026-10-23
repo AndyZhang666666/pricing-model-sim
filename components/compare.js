@@ -173,13 +173,14 @@ export default function Compare({ sim, params, setParam }) {
       <div>
         {/* 结论卡：用人话说结论，理由从数字里推 */}
         <div className="verdict">
-          <b className="head">结论</b>
+          <b className="head">当前假设下的比较</b>
           <p className="lead">
             在你这组参数下，<strong>{verdict.winnerLabel}</strong> 的 12 个月 LTV 最高，
             比第二名的{verdict.runnerUpLabel}高 <strong>{verdict.margin.toFixed(1)}%</strong>。
             {verdict.coverage}。
           </p>
           <p className="why">{verdict.reason}</p>
+          <p className="note">这是情景比较，不是最优定价建议。调高月费不会自动重估转化与留存；α、切换摩擦等参数需用实际数据校准。下一步应优先验证会改变机制排序的假设。</p>
           <div className="nums">
             {order.map((k, i) => (
               <div key={k}>
@@ -247,8 +248,8 @@ export default function Compare({ sim, params, setParam }) {
                 <th className="num">12 月 LTV</th>
                 <th className="num">LTV / CAC</th>
                 <th className="num">回本月份</th>
-                <th className="num">累计解锁</th>
-                <th className="num">付费月数</th>
+                <th className="num">人均累计解锁</th>
+                <th className="num">人均订阅月数</th>
               </tr>
             </thead>
             <tbody>
@@ -261,7 +262,7 @@ export default function Compare({ sim, params, setParam }) {
                     <td className="num">{s.ltvCac ? fmt(s.ltvCac, 2) : "—"}</td>
                     <td className="num">{s.paybackMonth ? `${s.paybackMonth} 个月` : "> 12 个月"}</td>
                     <td className="num">{s.expectedUnlocks > 0.05 ? `${fmt(s.expectedUnlocks, 1)} 集` : "—"}</td>
-                    <td className="num">{s.expectedPaidMonths > 0.05 ? `${fmt(s.expectedPaidMonths, 1)} 月` : "—"}</td>
+                    <td className="num">{k === "unlock" ? "不适用" : `${fmt(s.expectedPaidMonths, 1)} 月`}</td>
                   </tr>
                 );
               })}
@@ -269,7 +270,7 @@ export default function Compare({ sim, params, setParam }) {
           </table>
           <div className="note">
             <b>怎么读这张表</b>：LTV/CAC &lt; 1 表示这个机制在你的 CAC 下是亏的。
-            「累计解锁 / 付费月数」两列是拆解 —— 它们说明收入到底从哪来：
+            两列都以每名新增用户为分母。未付费者计零，因此订阅月数可能小于 1。它们说明收入到底从哪来：
             解锁机制靠集数堆，订阅机制靠月数堆，混合机制两边都有一点。
           </div>
         </div>
