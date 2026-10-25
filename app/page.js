@@ -22,6 +22,8 @@ import {
 } from "@/lib/model";
 import presetsData from "@/data/presets.json";
 import casesData from "@/data/cases.json";
+import { DRAFT_KEY, decodeDraft, comparisonSnapshot } from "@/lib/session";
+import DataTable from "@/components/data-table";
 
 const TABS = [
   { id: "retention", label: "留存曲线", sub: "第一步：定义用户" },
@@ -34,16 +36,50 @@ const deepClone = (x) => JSON.parse(JSON.stringify(x));
 
 export default function Home() {
   const [tab, setTab] = useState("retention");
-  const [retention, setRetention] = useState(() => deepClone(DEFAULT_RETENTION));
+  const [retention, setRetention] = useState(() =>
+    deepClone(DEFAULT_RETENTION),
+  );
   const [params, setParams] = useState(() => deepClone(DEFAULT_PARAMS));
   const [presetId, setPresetId] = useState(null);
+  const [restored, setRestored] = useState(false),
+    [notice, setNotice] = useState("假设仅保存于当前浏览器，不上传。");
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(DRAFT_KEY),
+        d = decodeDraft(raw);
+      if (d) {
+        setRetention(d.retention);
+        setParams(d.params);
+        setNotice("已恢复本机假设，输出按当前模型重新计算。");
+      } else if (raw) {
+        localStorage.removeItem(DRAFT_KEY);
+        setNotice("旧假设草稿无法恢复，已使用默认值。");
+      }
+    } catch {
+      setNotice("本地存储不可用，仍可比较和导出。");
+    }
+    setRestored(true);
+  }, []);
+  useEffect(() => {
+    if (!restored) return;
+    try {
+      localStorage.setItem(
+        DRAFT_KEY,
+        JSON.stringify({ version: 1, retention, params }),
+      );
+    } catch {
+      setNotice("假设保存失败，当前计算仍可使用。");
+    }
+  }, [retention, params, restored]);
 
   const setParam = (group, key, value) => {
+    if (group === "retention") {
+      setRetention((r) => ({ ...r, [key]: value }));
+      setPresetId(null);
+      return;
+    }
     setParams((prev) => {
       const next = { ...prev, [group]: { ...prev[group], [key]: value } };
-      if (group === "retention") {
-        setRetention((r) => ({ ...r, [key]: value }));
-      }
       return next;
     });
     // 手改参数就不再跟随任何预设
@@ -59,42 +95,95 @@ export default function Home() {
     });
   };
 
-  const sim = useMemo(
-    () => simulateAll(retention, params),
-    [retention, params],
-  );
+  const sim = useMemo(() => {
+    try {
+      return simulateAll(retention, params);
+    } catch (e) {
+      return { error: e.message };
+    }
+  }, [retention, params]);
 
   // 用 URL hash 记住当前 tab，方便直接分享到某一页
   useEffect(() => {
-    const h = window.location.hash.replace("#", "");
-    if (TABS.some((t) => t.id === h)) setTab(h);
+    const read = () => {
+      const h = location.hash.slice(1);
+      setTab(TABS.some((t) => t.id === h) ? h : "retention");
+    };
+    read();
+    addEventListener("hashchange", read);
+    return () => removeEventListener("hashchange", read);
   }, []);
   const go = (id) => {
     setTab(id);
-    if (typeof window !== "undefined") window.history.replaceState(null, "", `#${id}`);
+    if (typeof window !== "undefined")
+      window.history.replaceState(null, "", `#${id}`);
   };
+  function reset() {
+    setRetention(deepClone(DEFAULT_RETENTION));
+    setParams(deepClone(DEFAULT_PARAMS));
+    setPresetId(null);
+    setNotice("已恢复默认假设。");
+  }
+  function save() {
+    const a = document.createElement("a"),
+      u = URL.createObjectURL(
+        new Blob(
+          [JSON.stringify(comparisonSnapshot(retention, sim), null, 2)],
+          { type: "application/json" },
+        ),
+      );
+    a.href = u;
+    a.download = "pricing-comparison.json";
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(u), 1000);
+    setNotice("已导出假设、结果、逐月状态与模型边界。");
+  }
+  if (sim.error)
+    return (
+      <main className="wrap">
+        <h1>这组假设暂时无法计算</h1>
+        <p role="alert">{sim.error}</p>
+        <button onClick={reset}>恢复默认比较</button>
+      </main>
+    );
 
   return (
     <div className="wrap">
       <header className="top">
+        <a className="back" href="https://andyzhang666666.github.io/#projects">
+          ← Andy 的作品
+        </a>
         <h1>Pricing Model Sim</h1>
         <p>
-          给一条留存曲线和几个定价参数，算出「单次解锁 / 包月订阅 / 混合」三种付费机制
-          12 个月的 ARPU、LTV、回本周期，比较<b>什么条件下，机制排序会改变</b>。
+          给一条留存曲线和几个定价参数，算出「单次解锁 / 包月订阅 /
+          混合」三种付费机制 12 个月的 ARPU、LTV、回本周期，比较
+          <b>什么条件下，机制排序会改变</b>。
         </p>
         <div className="meta">
-          全部计算在浏览器里完成，没有服务端 · 公式与实际口径见{" "}
-          <code>lib/model.js</code> · 校验产物在 <code>results/</code>
+          本地计算 · 每名新增用户的统一口径 · 月末切换、次月订阅 ·
+          不作真实定价或收益承诺
         </div>
       </header>
 
       <div className="tabbar">
         {TABS.map((t) => (
-          <button key={t.id} className={tab === t.id ? "active" : ""} onClick={() => go(t.id)}>
+          <button
+            key={t.id}
+            aria-pressed={tab === t.id}
+            className={tab === t.id ? "active" : ""}
+            onClick={() => go(t.id)}
+          >
             {t.label}
             <small>{t.sub}</small>
           </button>
         ))}
+      </div>
+      <div className="utilitybar">
+        <p role="status">{notice}</p>
+        <button onClick={reset}>恢复全部默认</button>
+        <button className="primary" onClick={save}>
+          导出本组比较
+        </button>
       </div>
 
       {tab === "retention" && (
@@ -133,7 +222,11 @@ export default function Home() {
               <RetentionEditor
                 anchors={retention.anchors}
                 onChange={(list) => {
-                  setRetention((r) => ({ ...r, name: "自定义", anchors: list }));
+                  setRetention((r) => ({
+                    ...r,
+                    name: "自定义",
+                    anchors: list,
+                  }));
                   setPresetId(null);
                 }}
               />
@@ -144,10 +237,10 @@ export default function Home() {
             <div className="panel">
               <h2>这条曲线在告诉模型什么</h2>
               <p className="small">
-                留存曲线是后续所有计算的唯一输入。三种机制的收入都乘在这条曲线上 ——
-                换句话说，<b>定价参数再优化，也救不了一条留不住的曲线</b>。
+                留存曲线是后续所有计算的唯一输入。三种机制的收入都乘在这条曲线上
+                —— 换句话说，<b>定价参数再优化，也救不了一条留不住的曲线</b>。
               </p>
-              <table style={{ marginTop: 12 }}>
+              <DataTable label="大盘月度留存" style={{ marginTop: 12 }}>
                 <thead>
                   <tr>
                     <th>月</th>
@@ -161,15 +254,18 @@ export default function Home() {
                       <td>第 {i + 1} 月</td>
                       <td className="num">{(s * 100).toFixed(2)}%</td>
                       <td className="num">
-                        {i === 0 ? "—" : ((s / sim.ctx.S[i - 1]) * 100).toFixed(1) + "%"}
+                        {i === 0
+                          ? "—"
+                          : ((s / sim.ctx.S[i - 1]) * 100).toFixed(1) + "%"}
                       </td>
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </DataTable>
               <div className="note">
-                口径：第 k 个月的月初在册比例 = r(30 × (k−1))，所以第 1 个月恒为 100%（新用户当月必然在册），
-                第 2 个月 = D30 留存。按月取月初值而不是按月内积分，是为了让手算校验能对得上 ——
+                口径：第 k 个月的月初在册比例 = r(30 × (k−1))，所以第 1 个月恒为
+                100%（新用户当月必然在册）， 第 2 个月 = D30
+                留存。按月取月初值而不是按月内积分，是为了让手算校验能对得上 ——
                 取舍理由写在 <span className="mono">docs/DECISIONS.md</span>。
               </div>
             </div>
@@ -177,11 +273,12 @@ export default function Home() {
             <div className="panel">
               <h2>订阅人群的生存曲线</h2>
               <p className="small">
-                订阅者是<b>自选出来的高意愿人群</b>，直接用大盘留存会低估他们的粘性。
-                模型把大盘的月度生存率开 α 次方来修正：S<sub>k</sub><sup>α</sup>，
-                当前 α = {retention.alpha ?? 0.85}。α = 1 表示订阅者和普通用户一样容易流失。
+                模型<b>假设</b>订阅人群的生存曲线不同于大盘，并用 S<sub>k</sub>
+                <sup>α</sup> 表示这种差异；这不是已经观察到的选择效应。 当前 α ={" "}
+                {retention.alpha ?? 0.85}。α = 1
+                表示两条曲线一致，参数需要真实数据校准。
               </p>
-              <table style={{ marginTop: 12 }}>
+              <DataTable label="订阅人群留存假设" style={{ marginTop: 12 }}>
                 <thead>
                   <tr>
                     <th>月</th>
@@ -200,7 +297,7 @@ export default function Home() {
                     </tr>
                   ))}
                 </tbody>
-              </table>
+              </DataTable>
             </div>
 
             <div className="row">
@@ -235,14 +332,15 @@ export default function Home() {
 
       <footer>
         <p style={{ margin: "0 0 6px" }}>
-          <b>已知局限</b>：模型假设同一个月里新增的用户在月内均匀到达（按月网格离散化）；
+          <b>已知局限</b>
+          ：模型假设同一个月里新增的用户在月内均匀到达（按月网格离散化）；
           不考虑季节性、促销活动、退款与坏账；平台抽成按固定比例处理，不区分首月/续费。
-          这些简化在「比较三种机制的相对高低」这个用途上影响有限，但不能当作财务预测。
+          这些简化也可能改变机制排序，需要真实数据校准，不能当作财务预测。
         </p>
         <p style={{ margin: 0 }}>
-          合成数据说明见 <span className="mono">data/GENERATION.md</span> ·
-          假设清单见 <span className="mono">docs/ASSUMPTIONS.md</span> ·
-          校验脚本 <span className="mono">npm run check</span>
+          <a href="https://github.com/AndyZhang666666/pricing-model-sim">
+            查看模型、合成资料与验证记录
+          </a>
         </p>
       </footer>
     </div>

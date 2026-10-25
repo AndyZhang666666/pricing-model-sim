@@ -17,11 +17,13 @@ import {
   ReferenceLine,
 } from "recharts";
 import { MECHANISMS, MECHANISM_LABELS } from "@/lib/model";
+import DataTable from "./data-table";
 
-const COLOR = { unlock: "#3b5b92", subscription: "#b4553f", hybrid: "#2f6b52" };
+const COLOR = { unlock: "#1d5fbf", subscription: "#283a46", hybrid: "#6b747b" };
 const SHORT = { unlock: "单次解锁", subscription: "包月订阅", hybrid: "混合" };
 
-const fmt = (v, d = 2) => (v === null || v === undefined ? "—" : Number(v).toFixed(d));
+const fmt = (v, d = 2) =>
+  v === null || v === undefined ? "—" : Number(v).toFixed(d);
 
 function Slider({ label, hint, value, min, max, step, onChange, format }) {
   return (
@@ -32,6 +34,8 @@ function Slider({ label, hint, value, min, max, step, onChange, format }) {
       </span>
       <input
         type="range"
+        aria-label={label}
+        aria-valuetext={format ? format(value) : String(value)}
         min={min}
         max={max}
         step={step}
@@ -45,14 +49,16 @@ function Slider({ label, hint, value, min, max, step, onChange, format }) {
 
 export default function Compare({ sim, params, setParam }) {
   const { results, verdict } = sim;
-  const order = MECHANISMS.slice().sort((a, b) => results[b].summary.ltv12 - results[a].summary.ltv12);
+  const order = MECHANISMS.slice().sort(
+    (a, b) => results[b].summary.ltv12 - results[a].summary.ltv12,
+  );
 
   // 三线图的横轴数据：把三种机制的逐月序列并到一起
   const chartData = results.unlock.monthly.map((row, i) => ({
     month: i + 1,
-    单次解锁: results.unlock.monthly[i].arpu,
-    包月订阅: results.subscription.monthly[i].arpu,
-    混合: results.hybrid.monthly[i].arpu,
+    单次解锁: results.unlock.monthly[i].discountedArpu,
+    包月订阅: results.subscription.monthly[i].discountedArpu,
+    混合: results.hybrid.monthly[i].discountedArpu,
     ltvUnlock: results.unlock.monthly[i].arpu,
   }));
 
@@ -79,7 +85,7 @@ export default function Compare({ sim, params, setParam }) {
             hint="应用商店或渠道方拿走的部分"
             value={params.common.platformCut}
             min={0}
-            max={0.5}
+            max={1}
             step={0.01}
             onChange={(v) => setParam("common", "platformCut", v)}
             format={(v) => `${(v * 100).toFixed(0)}%`}
@@ -108,46 +114,130 @@ export default function Compare({ sim, params, setParam }) {
 
         <div className="panel">
           <h2>单次解锁</h2>
-          <Slider label="单集价格" value={params.unlock.pricePerUnlock} min={0.2} max={10} step={0.1}
-            onChange={(v) => setParam("unlock", "pricePerUnlock", v)} format={(v) => `¥${v.toFixed(2)}`} />
-          <Slider label="付费用户月均解锁" hint="付费人群平均每月解锁多少集"
-            value={params.unlock.unlocksPerPayerMonth} min={0} max={40} step={0.5}
-            onChange={(v) => setParam("unlock", "unlocksPerPayerMonth", v)} format={(v) => `${v} 集`} />
-          <Slider label="付费率（首月）" hint="活跃用户中会付费解锁的比例"
-            value={params.unlock.payerShare} min={0} max={1} step={0.01}
-            onChange={(v) => setParam("unlock", "payerShare", v)} format={(v) => `${(v * 100).toFixed(0)}%`} />
-          <Slider label="付费意愿月衰减" hint="老用户比新用户少掏多少；1 表示不衰减"
-            value={params.unlock.payerDecay} min={0.5} max={1} step={0.01}
-            onChange={(v) => setParam("unlock", "payerDecay", v)} format={(v) => v.toFixed(2)} />
-          <Slider label="免费集数" hint="白嫖期，会推迟解锁收入"
-            value={params.unlock.freeEpisodes} min={0} max={30} step={1}
-            onChange={(v) => setParam("unlock", "freeEpisodes", v)} format={(v) => `${v} 集`} />
+          <Slider
+            label="单集价格"
+            value={params.unlock.pricePerUnlock}
+            min={0}
+            max={10}
+            step={0.1}
+            onChange={(v) => setParam("unlock", "pricePerUnlock", v)}
+            format={(v) => `¥${v.toFixed(2)}`}
+          />
+          <Slider
+            label="付费用户月均解锁"
+            hint="付费人群平均每月解锁多少集"
+            value={params.unlock.unlocksPerPayerMonth}
+            min={0}
+            max={40}
+            step={0.5}
+            onChange={(v) => setParam("unlock", "unlocksPerPayerMonth", v)}
+            format={(v) => `${v} 集`}
+          />
+          <Slider
+            label="付费率（首月）"
+            hint="活跃用户中会付费解锁的比例"
+            value={params.unlock.payerShare}
+            min={0}
+            max={1}
+            step={0.01}
+            onChange={(v) => setParam("unlock", "payerShare", v)}
+            format={(v) => `${(v * 100).toFixed(0)}%`}
+          />
+          <Slider
+            label="付费意愿月衰减"
+            hint="老用户比新用户少掏多少；1 表示不衰减"
+            value={params.unlock.payerDecay}
+            min={0.5}
+            max={1}
+            step={0.01}
+            onChange={(v) => setParam("unlock", "payerDecay", v)}
+            format={(v) => v.toFixed(2)}
+          />
+          <Slider
+            label="免费集数"
+            hint="白嫖期，会推迟解锁收入"
+            value={params.unlock.freeEpisodes}
+            min={0}
+            max={30}
+            step={1}
+            onChange={(v) => setParam("unlock", "freeEpisodes", v)}
+            format={(v) => `${v} 集`}
+          />
         </div>
 
         <div className="panel">
           <h2>包月订阅</h2>
-          <Slider label="月费" value={params.subscription.monthlyPrice} min={1} max={80} step={1}
-            onChange={(v) => setParam("subscription", "monthlyPrice", v)} format={(v) => `¥${v}`} />
-          <Slider label="免费试用天数" value={params.subscription.trialDays} min={0} max={30} step={1}
-            onChange={(v) => setParam("subscription", "trialDays", v)} format={(v) => `${v} 天`} />
-          <Slider label="开始试用的比例" value={params.subscription.trialOptIn} min={0} max={1} step={0.01}
-            onChange={(v) => setParam("subscription", "trialOptIn", v)} format={(v) => `${(v * 100).toFixed(0)}%`} />
-          <Slider label="试用转付费率" hint="试用期结束时的付费转化"
-            value={params.subscription.trialToPaid} min={0} max={1} step={0.01}
-            onChange={(v) => setParam("subscription", "trialToPaid", v)} format={(v) => `${(v * 100).toFixed(0)}%`} />
+          <Slider
+            label="月费"
+            value={params.subscription.monthlyPrice}
+            min={0}
+            max={80}
+            step={1}
+            onChange={(v) => setParam("subscription", "monthlyPrice", v)}
+            format={(v) => `¥${v}`}
+          />
+          <Slider
+            label="免费试用天数"
+            value={params.subscription.trialDays}
+            min={0}
+            max={30}
+            step={1}
+            onChange={(v) => setParam("subscription", "trialDays", v)}
+            format={(v) => `${v} 天`}
+          />
+          <Slider
+            label="开始试用的比例"
+            value={params.subscription.trialOptIn}
+            min={0}
+            max={1}
+            step={0.01}
+            onChange={(v) => setParam("subscription", "trialOptIn", v)}
+            format={(v) => `${(v * 100).toFixed(0)}%`}
+          />
+          <Slider
+            label="试用转付费率"
+            hint="试用期结束时的付费转化"
+            value={params.subscription.trialToPaid}
+            min={0}
+            max={1}
+            step={0.01}
+            onChange={(v) => setParam("subscription", "trialToPaid", v)}
+            format={(v) => `${(v * 100).toFixed(0)}%`}
+          />
         </div>
 
         <div className="panel">
           <h2>混合机制</h2>
-          <Slider label="切订阅门槛" hint="累计解锁满多少集后开始推订阅"
-            value={params.hybrid.unlockThreshold} min={1} max={20} step={1}
-            onChange={(v) => setParam("hybrid", "unlockThreshold", v)} format={(v) => `${v} 集`} />
-          <Slider label="每月分流比例" hint="达到门槛后每月有多少比例转向订阅"
-            value={params.hybrid.switchRate} min={0} max={1} step={0.01}
-            onChange={(v) => setParam("hybrid", "switchRate", v)} format={(v) => `${(v * 100).toFixed(0)}%`} />
-          <Slider label="切换摩擦" hint="被推订阅的人里，因为预扣费反感而直接走掉的比例"
-            value={params.hybrid.switchChurn} min={0} max={0.9} step={0.01}
-            onChange={(v) => setParam("hybrid", "switchChurn", v)} format={(v) => `${(v * 100).toFixed(0)}%`} />
+          <Slider
+            label="切订阅门槛"
+            hint="累计解锁满多少集后开始推订阅"
+            value={params.hybrid.unlockThreshold}
+            min={0}
+            max={20}
+            step={1}
+            onChange={(v) => setParam("hybrid", "unlockThreshold", v)}
+            format={(v) => `${v} 集`}
+          />
+          <Slider
+            label="每月分流比例"
+            hint="达到门槛后每月有多少比例转向订阅"
+            value={params.hybrid.switchRate}
+            min={0}
+            max={1}
+            step={0.01}
+            onChange={(v) => setParam("hybrid", "switchRate", v)}
+            format={(v) => `${(v * 100).toFixed(0)}%`}
+          />
+          <Slider
+            label="切换摩擦"
+            hint="被推订阅的人里，因为预扣费反感而直接走掉的比例"
+            value={params.hybrid.switchChurn}
+            min={0}
+            max={1}
+            step={0.01}
+            onChange={(v) => setParam("hybrid", "switchChurn", v)}
+            format={(v) => `${(v * 100).toFixed(0)}%`}
+          />
         </div>
 
         <div className="panel">
@@ -163,8 +253,8 @@ export default function Compare({ sim, params, setParam }) {
             format={(v) => v.toFixed(2)}
           />
           <p className="small" style={{ margin: 0 }}>
-            当前曲线 D30 = <b>{((verdict.d30 ?? 0) * 100).toFixed(1)}%</b>。
-            α = 1 表示订阅者和普通用户一样容易流失（最保守）。
+            当前曲线 D30 = <b>{((verdict.d30 ?? 0) * 100).toFixed(1)}%</b>。 α =
+            1 表示订阅者和普通用户一样容易流失（最保守）。
           </p>
         </div>
       </div>
@@ -175,12 +265,33 @@ export default function Compare({ sim, params, setParam }) {
         <div className="verdict">
           <b className="head">当前假设下的比较</b>
           <p className="lead">
-            在你这组参数下，<strong>{verdict.winnerLabel}</strong> 的 12 个月 LTV 最高，
-            比第二名的{verdict.runnerUpLabel}高 <strong>{verdict.margin.toFixed(1)}%</strong>。
+            {verdict.tie ? (
+              <>
+                <strong>
+                  {verdict.tiedWinners.map((k) => SHORT[k]).join(" / ")}
+                </strong>{" "}
+                的 12 个月 LTV 并列，不强行选唯一赢家。
+              </>
+            ) : (
+              <>
+                在这组假设下，<strong>{verdict.winnerLabel}</strong> 的 12 个月
+                LTV 较高；
+                {verdict.margin === null ? (
+                  "第二名为零，不计算相对百分比。"
+                ) : (
+                  <>
+                    比{verdict.runnerUpLabel}高{" "}
+                    <strong>{verdict.margin.toFixed(1)}%</strong>。
+                  </>
+                )}
+              </>
+            )}
             {verdict.coverage}。
           </p>
           <p className="why">{verdict.reason}</p>
-          <p className="note">这是情景比较，不是最优定价建议。调高月费不会自动重估转化与留存；α、切换摩擦等参数需用实际数据校准。下一步应优先验证会改变机制排序的假设。</p>
+          <p className="note">
+            这是情景比较，不是最优定价建议。调高月费不会自动重估转化与留存；α、切换摩擦等参数需用实际数据校准。下一步应优先验证会改变机制排序的假设。
+          </p>
           <div className="nums">
             {order.map((k, i) => (
               <div key={k}>
@@ -199,7 +310,11 @@ export default function Compare({ sim, params, setParam }) {
                     .map((k) => [k, results[k].summary.paybackMonth])
                     .filter(([, m]) => m)
                     .sort((a, b) => a[1] - b[1])[0];
-                  return best ? `${SHORT[best[0]]} ${best[1]} 个月` : "12 个月内无";
+                  return params.common.cac === 0
+                    ? "不适用（CAC=0）"
+                    : best
+                      ? `${SHORT[best[0]]} ${best[1]} 个月`
+                      : "12 个月内无";
                 })()}
               </b>
             </div>
@@ -207,16 +322,38 @@ export default function Compare({ sim, params, setParam }) {
         </div>
 
         <div className="panel">
-          <h2>累计 ARPU 曲线（每个新增用户的累计贡献）</h2>
+          <h2>累计折现贡献（每名新增用户）</h2>
           <ResponsiveContainer width="100%" height={280}>
-            <LineChart data={chartData} margin={{ top: 6, right: 12, bottom: 4, left: -8 }}>
+            <LineChart
+              data={chartData}
+              margin={{ top: 6, right: 12, bottom: 4, left: -8 }}
+            >
               <CartesianGrid stroke="#eeebe6" vertical={false} />
-              <XAxis dataKey="month" tick={{ fontSize: 11, fill: "#a19b93" }} tickLine={false}
-                axisLine={{ stroke: "#e6e4e0" }} label={{ value: "注册后第几个月", position: "insideBottom", offset: -2, fontSize: 11, fill: "#a19b93" }} />
-              <YAxis tick={{ fontSize: 11, fill: "#a19b93" }} tickLine={false} axisLine={false}
-                tickFormatter={(v) => `¥${v}`} />
+              <XAxis
+                dataKey="month"
+                tick={{ fontSize: 11, fill: "#a19b93" }}
+                tickLine={false}
+                axisLine={{ stroke: "#e6e4e0" }}
+                label={{
+                  value: "注册后第几个月",
+                  position: "insideBottom",
+                  offset: -2,
+                  fontSize: 11,
+                  fill: "#a19b93",
+                }}
+              />
+              <YAxis
+                tick={{ fontSize: 11, fill: "#a19b93" }}
+                tickLine={false}
+                axisLine={false}
+                tickFormatter={(v) => `¥${v}`}
+              />
               <Tooltip
-                contentStyle={{ fontSize: 12, borderRadius: 8, border: "1px solid #e6e4e0" }}
+                contentStyle={{
+                  fontSize: 12,
+                  borderRadius: 8,
+                  border: "1px solid #e6e4e0",
+                }}
                 formatter={(v) => `¥${Number(v).toFixed(2)}`}
                 labelFormatter={(m) => `第 ${m} 个月`}
               />
@@ -225,23 +362,37 @@ export default function Compare({ sim, params, setParam }) {
                 y={cac}
                 stroke="#c0392b"
                 strokeDasharray="4 3"
-                label={{ value: `CAC ¥${cac}`, fontSize: 11, fill: "#c0392b", position: "insideTopRight" }}
+                label={{
+                  value: `CAC ¥${cac}`,
+                  fontSize: 11,
+                  fill: "#c0392b",
+                  position: "insideTopRight",
+                }}
               />
               {MECHANISMS.map((k) => (
-                <Line key={k} type="monotone" dataKey={SHORT[k]} stroke={COLOR[k]}
-                  strokeWidth={k === verdict.winner ? 2.4 : 1.6} dot={false} />
+                <Line
+                  key={k}
+                  type="linear"
+                  dataKey={SHORT[k]}
+                  stroke={COLOR[k]}
+                  strokeDasharray={k === "hybrid" ? "6 4" : undefined}
+                  isAnimationActive={false}
+                  strokeWidth={k === verdict.winner ? 2.4 : 1.6}
+                  dot={false}
+                />
               ))}
             </LineChart>
           </ResponsiveContainer>
           <p className="small" style={{ marginTop: 8, marginBottom: 0 }}>
-            红色虚线是 CAC。曲线穿过它以后的部分才是赚的 —— 这正是「回本月份」的定义。
+            虚线是
+            CAC。曲线越过它表示累计折现渠道收入覆盖获客成本，尚未扣除履约、研发等成本，不等于净利润。
             注意横轴是<b>用户自己的月龄</b>，不是日历月，这样才能和 CAC 直接比。
           </p>
         </div>
 
         <div className="panel">
           <h2>12 个月汇总</h2>
-          <table>
+          <DataTable label="十二个月机制汇总">
             <thead>
               <tr>
                 <th>机制</th>
@@ -257,27 +408,79 @@ export default function Compare({ sim, params, setParam }) {
                 const s = results[k].summary;
                 return (
                   <tr key={k} className={k === verdict.winner ? "win" : ""}>
-                    <td><span className={`chip ${k}`}>{MECHANISM_LABELS[k]}</span></td>
+                    <td>
+                      <span className={`chip ${k}`}>{MECHANISM_LABELS[k]}</span>
+                    </td>
                     <td className="num">¥{fmt(s.ltv12)}</td>
-                    <td className="num">{s.ltvCac ? fmt(s.ltvCac, 2) : "—"}</td>
-                    <td className="num">{s.paybackMonth ? `${s.paybackMonth} 个月` : "> 12 个月"}</td>
-                    <td className="num">{s.expectedUnlocks > 0.05 ? `${fmt(s.expectedUnlocks, 1)} 集` : "—"}</td>
-                    <td className="num">{k === "unlock" ? "不适用" : `${fmt(s.expectedPaidMonths, 1)} 月`}</td>
+                    <td className="num">
+                      {s.ltvCac !== null ? fmt(s.ltvCac, 2) : "—"}
+                    </td>
+                    <td className="num">
+                      {s.cac === 0
+                        ? "不适用"
+                        : s.paybackMonth
+                          ? `${s.paybackMonth} 个月`
+                          : "> 12 个月"}
+                    </td>
+                    <td className="num">{`${fmt(s.expectedUnlocks, 1)} 集`}</td>
+                    <td className="num">
+                      {k === "unlock"
+                        ? "不适用"
+                        : `${fmt(s.expectedPaidMonths, 1)} 月`}
+                    </td>
                   </tr>
                 );
               })}
             </tbody>
-          </table>
+          </DataTable>
           <div className="note">
-            <b>怎么读这张表</b>：LTV/CAC &lt; 1 表示这个机制在你的 CAC 下是亏的。
-            两列都以每名新增用户为分母。未付费者计零，因此订阅月数可能小于 1。它们说明收入到底从哪来：
+            <b>怎么读这张表</b>：LTV/CAC &lt; 1
+            表示模型中的折现渠道收入尚未覆盖获客成本，不是完整利润核算。
+            两列都以每名新增用户为分母。未付费者计零，因此订阅月数可能小于
+            1。它们说明收入到底从哪来：
             解锁机制靠集数堆，订阅机制靠月数堆，混合机制两边都有一点。
           </div>
         </div>
 
+        <details className="panel">
+          <summary>核对混合机制的逐月状态（每名新增用户）</summary>
+          <p className="small">
+            月末切换，下月开始计订阅；离开解锁池的人不再反复分流。所有份额以最初新增用户为分母。
+          </p>
+          <div
+            className="tableScroll"
+            tabIndex={0}
+            role="region"
+            aria-label="混合机制逐月状态"
+          >
+            <table>
+              <thead>
+                <tr>
+                  <th>月</th>
+                  <th>本月解锁池</th>
+                  <th>转订阅</th>
+                  <th>切换流失</th>
+                  <th>本月订阅付费</th>
+                </tr>
+              </thead>
+              <tbody>
+                {results.hybrid.trace.map((r) => (
+                  <tr key={r.month}>
+                    <td>{r.month}</td>
+                    <td>{r.unlockPool.toFixed(4)}</td>
+                    <td>{r.moved.toFixed(4)}</td>
+                    <td>{r.churned.toFixed(4)}</td>
+                    <td>{r.subPayers.toFixed(4)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </details>
+
         <div className="panel">
           <h2>第 12 个月的存量与收入结构</h2>
-          <table>
+          <DataTable label="第十二月存量与收入结构">
             <thead>
               <tr>
                 <th>机制</th>
@@ -293,17 +496,27 @@ export default function Compare({ sim, params, setParam }) {
                 return (
                   <tr key={k}>
                     <td>{SHORT[k]}</td>
-                    <td className="num">{Math.round(m.stock).toLocaleString()}</td>
-                    <td className="num">¥{Math.round(m.revenue).toLocaleString()}</td>
+                    <td className="num">
+                      {Math.round(m.stock).toLocaleString()}
+                    </td>
+                    <td className="num">
+                      ¥{Math.round(m.revenue).toLocaleString()}
+                    </td>
                     <td className="num">¥{fmt(m.stockArpu)}</td>
-                    <td className="num">¥{Math.round(results[k].summary.cumRevenue12).toLocaleString()}</td>
+                    <td className="num">
+                      ¥
+                      {Math.round(
+                        results[k].summary.cumRevenue12,
+                      ).toLocaleString()}
+                    </td>
                   </tr>
                 );
               })}
             </tbody>
-          </table>
+          </DataTable>
           <p className="small" style={{ marginTop: 8, marginBottom: 0 }}>
-            「存量变现效率」= 当月收入 ÷ 当月存量，是另一种口径的 ARPU；它<b>不能</b>用来算回本，
+            「存量变现效率」= 当月收入 ÷ 当月存量，是另一种口径的 ARPU；它
+            <b>不能</b>用来算回本，
             因为分母是活跃用户而不是新增用户。放在这里是为了看单位存量的变现能力。
           </p>
         </div>

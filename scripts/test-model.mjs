@@ -6,14 +6,11 @@
 // 用法：npm run test-model      → results/model-check.json
 
 import { writeFileSync, mkdirSync } from "node:fs";
+import { MODEL_VERSION } from "../lib/model.js";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import {
-  mergeParams,
-  buildContext,
-  simulateMechanism,
-} from "../lib/model.js";
+import { mergeParams, buildContext, simulateMechanism } from "../lib/model.js";
 import { fitCurve, monthlySurvival, rateAtMonth } from "../lib/retention.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -73,8 +70,18 @@ check(
 // 一个用户每个月都在付费 → 12 个月 LTV = 10 × 12 = 120。
 // 这是任务书里点名的那个用例。
 const pureSubParams = mergeParams({
-  common: { cac: 0, platformCut: 0, discountMonthly: 0, newUsersPerMonth: 1000 },
-  subscription: { monthlyPrice: 10, trialDays: 0, trialOptIn: 1, trialToPaid: 1 },
+  common: {
+    cac: 0,
+    platformCut: 0,
+    discountMonthly: 0,
+    newUsersPerMonth: 1000,
+  },
+  subscription: {
+    monthlyPrice: 10,
+    trialDays: 0,
+    trialOptIn: 1,
+    trialToPaid: 1,
+  },
 });
 const pureSubCtx = buildContext({ anchors: flatAnchors, alpha: 1 }, 12);
 const pureSub = simulateMechanism("subscription", pureSubCtx, pureSubParams);
@@ -99,7 +106,12 @@ const halfSub = simulateMechanism(
   pureSubCtx,
   mergeParams({
     common: { cac: 0, platformCut: 0, discountMonthly: 0 },
-    subscription: { monthlyPrice: 10, trialDays: 0, trialOptIn: 1, trialToPaid: 0.5 },
+    subscription: {
+      monthlyPrice: 10,
+      trialDays: 0,
+      trialOptIn: 1,
+      trialToPaid: 0.5,
+    },
   }),
 );
 check(
@@ -117,7 +129,12 @@ const cutSub = simulateMechanism(
   pureSubCtx,
   mergeParams({
     common: { cac: 0, platformCut: 0.3, discountMonthly: 0 },
-    subscription: { monthlyPrice: 10, trialDays: 0, trialOptIn: 1, trialToPaid: 0.5 },
+    subscription: {
+      monthlyPrice: 10,
+      trialDays: 0,
+      trialOptIn: 1,
+      trialToPaid: 0.5,
+    },
   }),
 );
 check(
@@ -131,13 +148,21 @@ check(
 // ── 场景 D：折现率 10%/月，订阅 ──────────────────────────────────────
 // 手算：Σ_{k=0..11} 10 / 1.1^k = 10 × (1 − 1.1^-12) / (1 − 1/1.1)
 const r = 0.1;
-const annuity = Array.from({ length: 12 }, (_, k) => 1 / Math.pow(1 + r, k)).reduce((a, b) => a + b, 0);
+const annuity = Array.from(
+  { length: 12 },
+  (_, k) => 1 / Math.pow(1 + r, k),
+).reduce((a, b) => a + b, 0);
 const discSub = simulateMechanism(
   "subscription",
   pureSubCtx,
   mergeParams({
     common: { cac: 0, platformCut: 0, discountMonthly: r },
-    subscription: { monthlyPrice: 10, trialDays: 0, trialOptIn: 1, trialToPaid: 1 },
+    subscription: {
+      monthlyPrice: 10,
+      trialDays: 0,
+      trialOptIn: 1,
+      trialToPaid: 1,
+    },
   }),
 );
 check(
@@ -208,7 +233,12 @@ const paybackSub = simulateMechanism(
   pureSubCtx,
   mergeParams({
     common: { cac: 25, platformCut: 0, discountMonthly: 0 },
-    subscription: { monthlyPrice: 10, trialDays: 0, trialOptIn: 1, trialToPaid: 1 },
+    subscription: {
+      monthlyPrice: 10,
+      trialDays: 0,
+      trialOptIn: 1,
+      trialToPaid: 1,
+    },
   }),
 );
 checkEq(
@@ -233,8 +263,18 @@ const revSub = simulateMechanism(
   "subscription",
   pureSubCtx,
   mergeParams({
-    common: { cac: 0, platformCut: 0, discountMonthly: 0, newUsersPerMonth: 1000 },
-    subscription: { monthlyPrice: 10, trialDays: 0, trialOptIn: 1, trialToPaid: 1 },
+    common: {
+      cac: 0,
+      platformCut: 0,
+      discountMonthly: 0,
+      newUsersPerMonth: 1000,
+    },
+    subscription: {
+      monthlyPrice: 10,
+      trialDays: 0,
+      trialOptIn: 1,
+      trialToPaid: 1,
+    },
   }),
 );
 check(
@@ -296,7 +336,12 @@ const hybridSeed = mergeParams({
     freeEpisodes: 0,
     episodesPerMonth: 25,
   },
-  subscription: { monthlyPrice: 10, trialDays: 0, trialOptIn: 1, trialToPaid: 1 },
+  subscription: {
+    monthlyPrice: 10,
+    trialDays: 0,
+    trialOptIn: 1,
+    trialToPaid: 1,
+  },
   hybrid: { unlockThreshold: 6, switchRate: 0 },
 });
 const hybridZero = simulateMechanism("hybrid", pureSubCtx, hybridSeed);
@@ -323,7 +368,12 @@ const hybridFull = simulateMechanism(
       freeEpisodes: 0,
       episodesPerMonth: 25,
     },
-    subscription: { monthlyPrice: 110, trialDays: 0, trialOptIn: 1, trialToPaid: 1 },
+    subscription: {
+      monthlyPrice: 110,
+      trialDays: 0,
+      trialOptIn: 1,
+      trialToPaid: 1,
+    },
     hybrid: { unlockThreshold: 1, switchRate: 1 },
   }),
 );
@@ -342,7 +392,12 @@ const price10 = simulateMechanism(
   pureSubCtx,
   mergeParams({
     common: { cac: 0, platformCut: 0, discountMonthly: 0 },
-    subscription: { monthlyPrice: 10, trialDays: 0, trialOptIn: 0.5, trialToPaid: 0.5 },
+    subscription: {
+      monthlyPrice: 10,
+      trialDays: 0,
+      trialOptIn: 0.5,
+      trialToPaid: 0.5,
+    },
   }),
 );
 const price20 = simulateMechanism(
@@ -350,7 +405,12 @@ const price20 = simulateMechanism(
   pureSubCtx,
   mergeParams({
     common: { cac: 0, platformCut: 0, discountMonthly: 0 },
-    subscription: { monthlyPrice: 20, trialDays: 0, trialOptIn: 0.5, trialToPaid: 0.5 },
+    subscription: {
+      monthlyPrice: 20,
+      trialDays: 0,
+      trialOptIn: 0.5,
+      trialToPaid: 0.5,
+    },
   }),
 );
 check(
@@ -369,7 +429,12 @@ const trial15 = simulateMechanism(
   pureSubCtx,
   mergeParams({
     common: { cac: 0, platformCut: 0, discountMonthly: 0 },
-    subscription: { monthlyPrice: 10, trialDays: 15, trialOptIn: 1, trialToPaid: 1 },
+    subscription: {
+      monthlyPrice: 10,
+      trialDays: 15,
+      trialOptIn: 1,
+      trialToPaid: 1,
+    },
   }),
 );
 check(
@@ -405,7 +470,9 @@ for (const kind of ["unlock", "subscription", "hybrid"]) {
     pass: nonNeg,
     note: "价格为负或状态机出错时会漏到这里",
   });
-  const monotone = sim.monthly.every((row, i) => i === 0 || row.arpu >= sim.monthly[i - 1].arpu);
+  const monotone = sim.monthly.every(
+    (row, i) => i === 0 || row.arpu >= sim.monthly[i - 1].arpu,
+  );
   cases.push({
     name: `默认参数 · ${kind} · 累计 ARPU 单调不减`,
     expected: true,
@@ -423,17 +490,22 @@ const out = {
   generatedBy: "scripts/test-model.mjs",
   // 只记录日期：这些产物是确定性的（没有随机数），秒级时间戳只会让每次重跑产生
   // 一行无意义的 git diff，掩盖真正的数据变化。
-  generatedAt: new Date().toISOString().slice(0, 10),
+  modelVersion: MODEL_VERSION,
   summary: { total: cases.length, passed, failed },
   cases,
 };
 
 mkdirSync(resolve(ROOT, "results"), { recursive: true });
-writeFileSync(resolve(ROOT, "results/model-check.json"), JSON.stringify(out, null, 2) + "\n");
+writeFileSync(
+  resolve(ROOT, "results/model-check.json"),
+  JSON.stringify(out, null, 2) + "\n",
+);
 
 console.log(`手算校验：${passed}/${cases.length} 通过`);
 for (const c of cases.filter((x) => !x.pass)) {
-  console.log(`  ✗ ${c.name}\n    预期 ${c.expected}，实际 ${c.actual}（容差 ${c.tolerance}）`);
+  console.log(
+    `  ✗ ${c.name}\n    预期 ${c.expected}，实际 ${c.actual}（容差 ${c.tolerance}）`,
+  );
 }
 if (failed > 0) {
   console.error(`\n有 ${failed} 条校验失败，模型不能提交。`);

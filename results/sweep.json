@@ -1,6 +1,6 @@
 {
   "generatedBy": "scripts/sweep.mjs",
-  "generatedAt": "2026-09-13",
+  "modelVersion": "conserved-cohort-v2-2026-10-25",
   "baseParams": {
     "common": {
       "newUsersPerMonth": 30000,
@@ -18,7 +18,7 @@
         "ltv": {
           "unlock": 6.1297420639467015,
           "subscription": 6.285715547637998,
-          "hybrid": 7.856123352478039
+          "hybrid": 7.203751129382285
         },
         "winner": "hybrid",
         "runnerUp": "subscription",
@@ -30,7 +30,7 @@
         "ltvCac": {
           "unlock": 0.7662177579933377,
           "subscription": 0.7857144434547497,
-          "hybrid": 0.9820154190597549
+          "hybrid": 0.9004688911727856
         }
       },
       "monthlyPriceSweep": {
@@ -71,28 +71,28 @@
             "price": 4,
             "ltv": {
               "unlock": 6.1297420639467015,
-              "subscription": 0.8979593639482857,
-              "hybrid": 6.2875386470745855
+              "subscription": 0.8979593639482858,
+              "hybrid": 5.766032832201573
             },
-            "winner": "hybrid",
-            "runnerUp": "unlock"
+            "winner": "unlock",
+            "runnerUp": "hybrid"
           },
           {
             "price": 8,
             "ltv": {
               "unlock": 6.1297420639467015,
-              "subscription": 1.7959187278965714,
-              "hybrid": 6.548969431308495
+              "subscription": 1.7959187278965716,
+              "hybrid": 6.005652548398358
             },
-            "winner": "hybrid",
-            "runnerUp": "unlock"
+            "winner": "unlock",
+            "runnerUp": "hybrid"
           },
           {
             "price": 12,
             "ltv": {
               "unlock": 6.1297420639467015,
-              "subscription": 2.693878091844857,
-              "hybrid": 6.810400215542405
+              "subscription": 2.6938780918448564,
+              "hybrid": 6.245272264595143
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -101,8 +101,8 @@
             "price": 16,
             "ltv": {
               "unlock": 6.1297420639467015,
-              "subscription": 3.5918374557931427,
-              "hybrid": 7.071830999776314
+              "subscription": 3.591837455793143,
+              "hybrid": 6.484891980791929
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -112,7 +112,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 4.489796819741428,
-              "hybrid": 7.333261784010221
+              "hybrid": 6.724511696988715
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -121,8 +121,8 @@
             "price": 24,
             "ltv": {
               "unlock": 6.1297420639467015,
-              "subscription": 5.387756183689714,
-              "hybrid": 7.594692568244131
+              "subscription": 5.387756183689713,
+              "hybrid": 6.964131413185499
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -132,7 +132,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -141,8 +141,8 @@
             "price": 32,
             "ltv": {
               "unlock": 6.1297420639467015,
-              "subscription": 7.1836749115862855,
-              "hybrid": 8.117554136711947
+              "subscription": 7.183674911586286,
+              "hybrid": 7.443370845579068
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -152,17 +152,17 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 8.08163427553457,
-              "hybrid": 8.378984920945857
+              "hybrid": 7.6829905617758545
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "price": 40,
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 8.979593639482855,
-              "hybrid": 8.640415705179764
+              "hybrid": 7.922610277972639
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -172,7 +172,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 9.877553003431142,
-              "hybrid": 8.901846489413675
+              "hybrid": 8.162229994169426
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -181,8 +181,8 @@
             "price": 48,
             "ltv": {
               "unlock": 6.1297420639467015,
-              "subscription": 10.775512367379427,
-              "hybrid": 9.163277273647584
+              "subscription": 10.775512367379426,
+              "hybrid": 8.401849710366212
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -192,7 +192,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 11.673471731327714,
-              "hybrid": 9.424708057881489
+              "hybrid": 8.641469426562995
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -202,7 +202,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 12.571431095275996,
-              "hybrid": 9.686138842115401
+              "hybrid": 8.88108914275978
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -212,7 +212,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 13.469390459224282,
-              "hybrid": 9.94756962634931
+              "hybrid": 9.120708858956565
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -221,8 +221,8 @@
             "price": 64,
             "ltv": {
               "unlock": 6.1297420639467015,
-              "subscription": 14.367349823172571,
-              "hybrid": 10.209000410583219
+              "subscription": 14.367349823172573,
+              "hybrid": 9.36032857515335
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -232,7 +232,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 15.265309187120858,
-              "hybrid": 10.470431194817126
+              "hybrid": 9.599948291350138
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -242,7 +242,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 16.16326855106914,
-              "hybrid": 10.731861979051034
+              "hybrid": 9.839568007546925
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -252,7 +252,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 17.06122791501743,
-              "hybrid": 10.993292763284943
+              "hybrid": 10.079187723743708
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -262,7 +262,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 17.95918727896571,
-              "hybrid": 11.254723547518852
+              "hybrid": 10.31880743994049
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -272,7 +272,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 18.857146642913992,
-              "hybrid": 11.516154331752762
+              "hybrid": 10.55842715613728
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -282,7 +282,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 19.755106006862285,
-              "hybrid": 11.777585115986671
+              "hybrid": 10.798046872334066
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -292,7 +292,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 20.653065370810566,
-              "hybrid": 12.03901590022058
+              "hybrid": 11.037666588530849
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -301,8 +301,8 @@
             "price": 96,
             "ltv": {
               "unlock": 6.1297420639467015,
-              "subscription": 21.551024734758855,
-              "hybrid": 12.300446684454489
+              "subscription": 21.55102473475885,
+              "hybrid": 11.277286304727633
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -312,7 +312,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 22.448984098707147,
-              "hybrid": 12.561877468688396
+              "hybrid": 11.516906020924422
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -322,7 +322,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 23.346943462655428,
-              "hybrid": 12.823308252922303
+              "hybrid": 11.756525737121203
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -332,7 +332,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 24.244902826603713,
-              "hybrid": 13.084739037156211
+              "hybrid": 11.996145453317991
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -342,7 +342,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 25.14286219055199,
-              "hybrid": 13.346169821390122
+              "hybrid": 12.235765169514774
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -352,7 +352,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 26.040821554500283,
-              "hybrid": 13.60760060562403
+              "hybrid": 12.475384885711565
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -362,7 +362,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 26.938780918448565,
-              "hybrid": 13.869031389857941
+              "hybrid": 12.715004601908344
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -371,12 +371,21 @@
         "switches": [
           {
             "between": [
-              36,
-              40
+              8,
+              12
+            ],
+            "from": "unlock",
+            "to": "hybrid",
+            "threshold": 10.25
+          },
+          {
+            "between": [
+              32,
+              36
             ],
             "from": "hybrid",
             "to": "subscription",
-            "threshold": 37.75
+            "threshold": 33.75
           }
         ]
       },
@@ -406,7 +415,7 @@
             "ltv": {
               "unlock": 6.8017420639467,
               "subscription": 6.285715547637998,
-              "hybrid": 8.52812335247804
+              "hybrid": 7.8757511293822855
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -417,7 +426,7 @@
             "ltv": {
               "unlock": 6.353742063946702,
               "subscription": 6.285715547637998,
-              "hybrid": 8.080123352478038
+              "hybrid": 7.427751129382285
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -428,7 +437,7 @@
             "ltv": {
               "unlock": 5.905742063946701,
               "subscription": 6.285715547637998,
-              "hybrid": 7.632123352478039
+              "hybrid": 6.979751129382285
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -439,7 +448,7 @@
             "ltv": {
               "unlock": 5.457742063946701,
               "subscription": 6.285715547637998,
-              "hybrid": 7.184123352478038
+              "hybrid": 6.531751129382286
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -450,10 +459,10 @@
             "ltv": {
               "unlock": 5.0097420639467005,
               "subscription": 6.285715547637998,
-              "hybrid": 6.736123352478038
+              "hybrid": 6.083751129382286
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "freeEpisodes": 10,
@@ -461,10 +470,10 @@
             "ltv": {
               "unlock": 4.561742063946702,
               "subscription": 6.285715547637998,
-              "hybrid": 6.288123352478038
+              "hybrid": 5.635751129382285
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "freeEpisodes": 12,
@@ -472,7 +481,7 @@
             "ltv": {
               "unlock": 4.113742063946701,
               "subscription": 6.285715547637998,
-              "hybrid": 5.840123352478039
+              "hybrid": 5.187751129382285
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -483,10 +492,10 @@
             "ltv": {
               "unlock": 3.6657420639467007,
               "subscription": 6.285715547637998,
-              "hybrid": 3.9671317230826104
+              "hybrid": 3.4706053334135007
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 16,
@@ -494,10 +503,10 @@
             "ltv": {
               "unlock": 3.217742063946701,
               "subscription": 6.285715547637998,
-              "hybrid": 3.519131723082611
+              "hybrid": 3.0226053334135012
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 18,
@@ -505,10 +514,10 @@
             "ltv": {
               "unlock": 2.769742063946701,
               "subscription": 6.285715547637998,
-              "hybrid": 3.071131723082611
+              "hybrid": 2.574605333413501
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 20,
@@ -516,10 +525,10 @@
             "ltv": {
               "unlock": 2.3217420639467012,
               "subscription": 6.285715547637998,
-              "hybrid": 2.6231317230826106
+              "hybrid": 2.1266053334135004
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 22,
@@ -527,10 +536,10 @@
             "ltv": {
               "unlock": 1.8737420639467008,
               "subscription": 6.285715547637998,
-              "hybrid": 2.175131723082611
+              "hybrid": 1.6786053334135003
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 24,
@@ -538,10 +547,10 @@
             "ltv": {
               "unlock": 1.425742063946701,
               "subscription": 6.285715547637998,
-              "hybrid": 1.727131723082611
+              "hybrid": 1.2306053334135008
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 26,
@@ -549,10 +558,10 @@
             "ltv": {
               "unlock": 1.183598063946701,
               "subscription": 6.285715547637998,
-              "hybrid": 1.4849877230826107
+              "hybrid": 0.9884613334135002
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 28,
@@ -560,10 +569,10 @@
             "ltv": {
               "unlock": 1.147310063946701,
               "subscription": 6.285715547637998,
-              "hybrid": 1.4486997230826106
+              "hybrid": 0.9521733334135001
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 30,
@@ -571,17 +580,17 @@
             "ltv": {
               "unlock": 1.1110220639467012,
               "subscription": 6.285715547637998,
-              "hybrid": 1.4124117230826108
+              "hybrid": 0.9158853334135002
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           }
         ],
         "switches": [
           {
             "between": [
-              10,
-              12
+              6,
+              8
             ],
             "from": "hybrid",
             "to": "subscription"
@@ -622,7 +631,7 @@
             "ltv": {
               "unlock": 5.40525564720255,
               "subscription": 4.90228073139442,
-              "hybrid": 6.718579667241011
+              "hybrid": 6.466442753307678
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -632,7 +641,7 @@
             "ltv": {
               "unlock": 5.58583498436902,
               "subscription": 5.265133894116112,
-              "hybrid": 7.001666297995641
+              "hybrid": 6.651445493366556
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -642,7 +651,7 @@
             "ltv": {
               "unlock": 5.76682695784631,
               "subscription": 5.614691951233946,
-              "hybrid": 7.285342427175097
+              "hybrid": 6.835642187924753
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -652,7 +661,7 @@
             "ltv": {
               "unlock": 5.94814754373375,
               "subscription": 5.954212996142228,
-              "hybrid": 7.570073183707089
+              "hybrid": 7.019625218467506
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -662,7 +671,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -672,7 +681,7 @@
             "ltv": {
               "unlock": 6.311571951947895,
               "subscription": 6.61056810938066,
-              "hybrid": 8.143656656461255
+              "hybrid": 7.388254668863623
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -682,7 +691,7 @@
             "ltv": {
               "unlock": 6.493608478165796,
               "subscription": 6.9297568256885675,
-              "hybrid": 8.432779633590313
+              "hybrid": 7.5733000167973925
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -692,7 +701,7 @@
             "ltv": {
               "unlock": 6.675829375857326,
               "subscription": 7.244024411997689,
-              "hybrid": 8.723563821112299
+              "hybrid": 7.759007100548834
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -702,7 +711,7 @@
             "ltv": {
               "unlock": 6.858216859553131,
               "subscription": 7.5539493344041215,
-              "hybrid": 9.016058073615797
+              "hybrid": 7.945466439390449
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -710,9 +719,9 @@
           {
             "d30": 0.1575,
             "ltv": {
-              "unlock": 6.876608928271496,
+              "unlock": 6.876608928271495,
               "subscription": 7.255890134108477,
-              "hybrid": 8.985872104967187
+              "hybrid": 8.016352346942833
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -721,8 +730,8 @@
             "d30": 0.171,
             "ltv": {
               "unlock": 7.045452049598472,
-              "subscription": 7.516149035247989,
-              "hybrid": 9.254919813157562
+              "subscription": 7.51614903524799,
+              "hybrid": 8.195554779744116
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -732,7 +741,7 @@
             "ltv": {
               "unlock": 7.2144653569443395,
               "subscription": 7.773897029520194,
-              "hybrid": 9.52575421539177
+              "hybrid": 8.375710040967832
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -742,7 +751,7 @@
             "ltv": {
               "unlock": 7.383639185345836,
               "subscription": 8.029347305566068,
-              "hybrid": 9.798378076874794
+              "hybrid": 8.55684713311444
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -752,7 +761,7 @@
             "ltv": {
               "unlock": 7.5541046138740535,
               "subscription": 8.286854668876355,
-              "hybrid": 10.075118932035192
+              "hybrid": 8.739907588481367
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -762,7 +771,7 @@
             "ltv": {
               "unlock": 7.725432797655101,
               "subscription": 8.544918557732165,
-              "hybrid": 10.355115160134265
+              "hybrid": 8.924558204958098
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -772,7 +781,7 @@
             "ltv": {
               "unlock": 7.8970734461822225,
               "subscription": 8.801656775642856,
-              "hybrid": 10.637254181847911
+              "hybrid": 9.11037515918919
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -782,7 +791,7 @@
             "ltv": {
               "unlock": 8.069016882916518,
               "subscription": 9.057170670363925,
-              "hybrid": 10.9215249005473
+              "hybrid": 9.297369658960633
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -790,9 +799,9 @@
           {
             "d30": 0.2655,
             "ltv": {
-              "unlock": 8.241254279272464,
+              "unlock": 8.241254279272463,
               "subscription": 9.311549449546218,
-              "hybrid": 11.207915695753316
+              "hybrid": 9.485551038742853
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -802,7 +811,7 @@
             "ltv": {
               "unlock": 8.413777539606583,
               "subscription": 9.564872162060254,
-              "hybrid": 11.496414590651646
+              "hybrid": 9.674927096991153
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -812,7 +821,7 @@
             "ltv": {
               "unlock": 8.586579206737982,
               "subscription": 9.81720927692475,
-              "hybrid": 11.787009376924978
+              "hybrid": 9.865504361642797
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -822,53 +831,63 @@
             "ltv": {
               "unlock": 8.759652383540137,
               "subscription": 10.068623956233191,
-              "hybrid": 12.079687708431091
+              "hybrid": 10.057288301492981
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.3195,
             "ltv": {
               "unlock": 8.932990667269413,
               "subscription": 10.319173092165057,
-              "hybrid": 12.374437171862667
+              "hybrid": 10.250283496217202
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.333,
             "ltv": {
               "unlock": 9.1065880941014,
               "subscription": 10.568908159846236,
-              "hybrid": 12.671245340217068
+              "hybrid": 10.444493774404759
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.3465,
             "ltv": {
               "unlock": 9.280439091932022,
               "subscription": 10.817875924837386,
-              "hybrid": 12.970099813307398
+              "hybrid": 10.639922326569712
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.36,
             "ltv": {
               "unlock": 9.454538439932579,
               "subscription": 11.06611903467822,
-              "hybrid": 13.270988248424125
+              "hybrid": 10.836571798388412
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           }
         ],
-        "switches": []
+        "switches": [
+          {
+            "between": [
+              0.2925,
+              0.306
+            ],
+            "from": "hybrid",
+            "to": "subscription",
+            "threshold": 0.3034
+          }
+        ]
       },
       "frictionSweep": {
         "values": [
@@ -899,7 +918,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 1.0057144876220798,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -909,7 +928,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 1.4490208623347975,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -919,7 +938,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 1.892327237047515,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -929,7 +948,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 2.3356336117602323,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -939,7 +958,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 2.778952557904045,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -949,7 +968,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 3.2222589326167634,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -959,7 +978,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 3.66556530732948,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -969,7 +988,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 4.108871682042198,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -979,7 +998,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 4.552178056754914,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -989,7 +1008,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 4.995484431467632,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -999,7 +1018,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 5.438803377611446,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -1009,7 +1028,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 5.882109752324163,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -1019,7 +1038,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.325416127036881,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1029,7 +1048,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.768722501749599,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1039,27 +1058,27 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 7.212028876462316,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "trialToPaid": 0.608947,
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 7.6553352511750345,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "trialToPaid": 0.644211,
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 8.098654197318846,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1069,7 +1088,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 8.541960572031565,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1079,7 +1098,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 8.98526694674428,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1089,7 +1108,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 9.428573321456996,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1098,12 +1117,12 @@
         "switches": [
           {
             "between": [
-              0.608947,
-              0.644211
+              0.538421,
+              0.573684
             ],
             "from": "hybrid",
             "to": "subscription",
-            "threshold": 0.62489
+            "threshold": 0.57303
           }
         ]
       },
@@ -1135,7 +1154,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 8.84151630843662
+              "hybrid": 8.106933136585551
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1145,7 +1164,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 8.700745886156822
+              "hybrid": 7.977907135556513
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1155,7 +1174,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 8.559975463877025
+              "hybrid": 7.848881134527475
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1165,7 +1184,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 8.419205041597225
+              "hybrid": 7.719855133498438
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1175,7 +1194,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 8.27843461931743
+              "hybrid": 7.590829132469399
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1185,7 +1204,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 8.137664197037633
+              "hybrid": 7.461803131440362
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1195,7 +1214,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 7.996893774757837
+              "hybrid": 7.332777130411323
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1205,7 +1224,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 7.856123352478039
+              "hybrid": 7.203751129382285
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1215,7 +1234,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 7.715352930198244
+              "hybrid": 7.074725128353249
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1225,7 +1244,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 7.574582507918445
+              "hybrid": 6.9456991273242075
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1235,7 +1254,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 7.43381208563865
+              "hybrid": 6.81667312629517
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1245,7 +1264,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 7.293041663358852
+              "hybrid": 6.687647125266131
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1255,7 +1274,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 7.152271241079053
+              "hybrid": 6.558621124237094
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1265,7 +1284,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 7.0115008187992585
+              "hybrid": 6.429595123208054
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1275,7 +1294,7 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 6.870730396519459
+              "hybrid": 6.3005691221790165
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1285,43 +1304,53 @@
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 6.729959974239664
+              "hybrid": 6.171543121149978
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "switchChurn": 0.8,
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 6.589189551959866
+              "hybrid": 6.042517120120941
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "unlock"
           },
           {
             "switchChurn": 0.85,
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 6.448419129680071
+              "hybrid": 5.913491119091902
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "unlock"
           },
           {
             "switchChurn": 0.9,
             "ltv": {
               "unlock": 6.1297420639467015,
               "subscription": 6.285715547637998,
-              "hybrid": 6.307648707400271
+              "hybrid": 5.784465118062863
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "unlock"
           }
         ],
-        "switches": []
+        "switches": [
+          {
+            "between": [
+              0.7,
+              0.75
+            ],
+            "from": "hybrid",
+            "to": "subscription",
+            "threshold": 0.70571
+          }
+        ]
       }
     },
     {
@@ -1332,19 +1361,19 @@
         "ltv": {
           "unlock": 7.531447434590851,
           "subscription": 8.550277114267157,
-          "hybrid": 10.099347606346416
+          "hybrid": 8.621727007929676
         },
         "winner": "hybrid",
         "runnerUp": "subscription",
         "paybackMonth": {
           "unlock": null,
           "subscription": 9,
-          "hybrid": 4
+          "hybrid": 6
         },
         "ltvCac": {
           "unlock": 0.9414309293238564,
           "subscription": 1.0687846392833946,
-          "hybrid": 1.262418450793302
+          "hybrid": 1.0777158759912095
         }
       },
       "monthlyPriceSweep": {
@@ -1386,37 +1415,37 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 1.2214681591810228,
-              "hybrid": 7.689049046579986
+              "hybrid": 6.542708113239716
             },
-            "winner": "hybrid",
-            "runnerUp": "unlock"
+            "winner": "unlock",
+            "runnerUp": "hybrid"
           },
           {
             "price": 8,
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 2.4429363183620456,
-              "hybrid": 8.090765473207725
+              "hybrid": 6.889211262354709
             },
-            "winner": "hybrid",
-            "runnerUp": "unlock"
+            "winner": "unlock",
+            "runnerUp": "hybrid"
           },
           {
             "price": 12,
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 3.6644044775430684,
-              "hybrid": 8.492481899835461
+              "hybrid": 7.235714411469704
             },
-            "winner": "hybrid",
-            "runnerUp": "unlock"
+            "winner": "unlock",
+            "runnerUp": "hybrid"
           },
           {
             "price": 16,
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 4.885872636724091,
-              "hybrid": 8.8941983264632
+              "hybrid": 7.582217560584699
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -1426,7 +1455,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 6.107340795905112,
-              "hybrid": 9.295914753090937
+              "hybrid": 7.9287207096996895
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -1436,7 +1465,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 7.328808955086137,
-              "hybrid": 9.69763117971868
+              "hybrid": 8.275223858814686
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -1446,7 +1475,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1456,17 +1485,17 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 9.771745273448182,
-              "hybrid": 10.501064032974154
+              "hybrid": 8.968230157044673
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "price": 36,
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 10.993213432629199,
-              "hybrid": 10.902780459601894
+              "hybrid": 9.314733306159663
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1476,7 +1505,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 12.214681591810225,
-              "hybrid": 11.304496886229632
+              "hybrid": 9.661236455274654
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1486,7 +1515,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 13.436149750991248,
-              "hybrid": 11.70621331285737
+              "hybrid": 10.007739604389652
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1496,7 +1525,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 14.657617910172274,
-              "hybrid": 12.10792973948511
+              "hybrid": 10.354242753504641
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1506,7 +1535,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 15.879086069353294,
-              "hybrid": 12.509646166112846
+              "hybrid": 10.70074590261964
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1516,7 +1545,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 17.100554228534314,
-              "hybrid": 12.91136259274059
+              "hybrid": 11.04724905173463
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1526,7 +1555,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 18.32202238771534,
-              "hybrid": 13.313079019368326
+              "hybrid": 11.393752200849626
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1536,7 +1565,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 19.543490546896365,
-              "hybrid": 13.71479544599606
+              "hybrid": 11.740255349964619
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1546,7 +1575,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 20.764958706077383,
-              "hybrid": 14.116511872623803
+              "hybrid": 12.086758499079611
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1556,7 +1585,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 21.986426865258398,
-              "hybrid": 14.518228299251538
+              "hybrid": 12.433261648194605
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1566,7 +1595,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 23.20789502443943,
-              "hybrid": 14.91994472587928
+              "hybrid": 12.779764797309598
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1576,7 +1605,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 24.42936318362045,
-              "hybrid": 15.321661152507014
+              "hybrid": 13.12626794642459
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1586,7 +1615,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 25.65083134280147,
-              "hybrid": 15.723377579134755
+              "hybrid": 13.472771095539585
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1596,7 +1625,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 26.872299501982496,
-              "hybrid": 16.12509400576249
+              "hybrid": 13.81927424465458
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1606,7 +1635,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 28.093767661163522,
-              "hybrid": 16.526810432390228
+              "hybrid": 14.165777393769572
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1616,7 +1645,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 29.315235820344547,
-              "hybrid": 16.928526859017964
+              "hybrid": 14.512280542884566
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1626,7 +1655,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 30.536703979525566,
-              "hybrid": 17.33024328564571
+              "hybrid": 14.858783691999559
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1636,7 +1665,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 31.758172138706588,
-              "hybrid": 17.731959712273444
+              "hybrid": 15.205286841114551
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1646,7 +1675,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 32.97964029788761,
-              "hybrid": 18.133676138901183
+              "hybrid": 15.551789990229544
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1656,7 +1685,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 34.20110845706863,
-              "hybrid": 18.535392565528923
+              "hybrid": 15.89829313934454
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1666,7 +1695,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 35.42257661624966,
-              "hybrid": 18.937108992156663
+              "hybrid": 16.24479628845953
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1676,7 +1705,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 36.64404477543068,
-              "hybrid": 19.338825418784403
+              "hybrid": 16.591299437574524
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1685,12 +1714,21 @@
         "switches": [
           {
             "between": [
-              32,
-              36
+              12,
+              16
+            ],
+            "from": "unlock",
+            "to": "hybrid",
+            "threshold": 15.25
+          },
+          {
+            "between": [
+              28,
+              32
             ],
             "from": "hybrid",
             "to": "subscription",
-            "threshold": 35.75
+            "threshold": 28.25
           }
         ]
       },
@@ -1720,7 +1758,7 @@
             "ltv": {
               "unlock": 8.203447434590853,
               "subscription": 8.550277114267157,
-              "hybrid": 10.771347606346417
+              "hybrid": 9.293727007929675
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1731,7 +1769,7 @@
             "ltv": {
               "unlock": 7.7554474345908515,
               "subscription": 8.550277114267157,
-              "hybrid": 10.323347606346417
+              "hybrid": 8.845727007929677
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1742,10 +1780,10 @@
             "ltv": {
               "unlock": 7.307447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 9.875347606346416
+              "hybrid": 8.397727007929676
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "freeEpisodes": 6,
@@ -1753,10 +1791,10 @@
             "ltv": {
               "unlock": 6.859447434590852,
               "subscription": 8.550277114267157,
-              "hybrid": 9.427347606346416
+              "hybrid": 7.949727007929678
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "freeEpisodes": 8,
@@ -1764,10 +1802,10 @@
             "ltv": {
               "unlock": 6.411447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 8.979347606346415
+              "hybrid": 7.501727007929677
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "freeEpisodes": 10,
@@ -1775,7 +1813,7 @@
             "ltv": {
               "unlock": 5.963447434590852,
               "subscription": 8.550277114267157,
-              "hybrid": 8.531347606346417
+              "hybrid": 7.053727007929678
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1786,7 +1824,7 @@
             "ltv": {
               "unlock": 5.515447434590852,
               "subscription": 8.550277114267157,
-              "hybrid": 8.083347606346416
+              "hybrid": 6.605727007929678
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -1797,10 +1835,10 @@
             "ltv": {
               "unlock": 5.067447434590852,
               "subscription": 8.550277114267157,
-              "hybrid": 5.89343112309295
+              "hybrid": 4.731161944429875
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 16,
@@ -1808,10 +1846,10 @@
             "ltv": {
               "unlock": 4.619447434590852,
               "subscription": 8.550277114267157,
-              "hybrid": 5.44543112309295
+              "hybrid": 4.2831619444298745
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 18,
@@ -1819,10 +1857,10 @@
             "ltv": {
               "unlock": 4.171447434590852,
               "subscription": 8.550277114267157,
-              "hybrid": 4.99743112309295
+              "hybrid": 3.8351619444298755
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 20,
@@ -1830,10 +1868,10 @@
             "ltv": {
               "unlock": 3.7234474345908524,
               "subscription": 8.550277114267157,
-              "hybrid": 4.54943112309295
+              "hybrid": 3.387161944429875
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 22,
@@ -1841,10 +1879,10 @@
             "ltv": {
               "unlock": 3.275447434590852,
               "subscription": 8.550277114267157,
-              "hybrid": 4.10143112309295
+              "hybrid": 2.939161944429875
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 24,
@@ -1852,10 +1890,10 @@
             "ltv": {
               "unlock": 2.8274474345908525,
               "subscription": 8.550277114267157,
-              "hybrid": 3.6534311230929513
+              "hybrid": 2.4911619444298756
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 26,
@@ -1863,10 +1901,10 @@
             "ltv": {
               "unlock": 2.5691754345908526,
               "subscription": 8.550277114267157,
-              "hybrid": 3.3951591230929505
+              "hybrid": 2.2328899444298758
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 28,
@@ -1874,10 +1912,10 @@
             "ltv": {
               "unlock": 2.5006314345908525,
               "subscription": 8.550277114267157,
-              "hybrid": 3.3266151230929504
+              "hybrid": 2.1643459444298756
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 30,
@@ -1885,17 +1923,17 @@
             "ltv": {
               "unlock": 2.4320874345908523,
               "subscription": 8.550277114267157,
-              "hybrid": 3.25807112309295
+              "hybrid": 2.095801944429876
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           }
         ],
         "switches": [
           {
             "between": [
-              8,
-              10
+              2,
+              4
             ],
             "from": "hybrid",
             "to": "subscription"
@@ -1936,7 +1974,7 @@
             "ltv": {
               "unlock": 6.047584433326454,
               "subscription": 6.261224151619184,
-              "hybrid": 7.751207664609639
+              "hybrid": 7.085031739272479
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1946,7 +1984,7 @@
             "ltv": {
               "unlock": 6.200141927919056,
               "subscription": 6.551401632545784,
-              "hybrid": 7.994588221154483
+              "hybrid": 7.233979035225305
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1956,7 +1994,7 @@
             "ltv": {
               "unlock": 6.352894802532394,
               "subscription": 6.837046337954378,
-              "hybrid": 8.23901294116224
+              "hybrid": 7.383128424113273
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1966,7 +2004,7 @@
             "ltv": {
               "unlock": 6.5058268809669935,
               "subscription": 7.118710311645323,
-              "hybrid": 8.484542062653633
+              "hybrid": 7.532574508910112
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1976,7 +2014,7 @@
             "ltv": {
               "unlock": 6.658925639500886,
               "subscription": 7.396833390859373,
-              "hybrid": 8.731220517630293
+              "hybrid": 7.682391567217275
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1986,7 +2024,7 @@
             "ltv": {
               "unlock": 6.812156175510672,
               "subscription": 7.671729295241596,
-              "hybrid": 8.979041899729099
+              "hybrid": 7.832614704761815
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -1996,7 +2034,7 @@
             "ltv": {
               "unlock": 6.965540805629772,
               "subscription": 7.943750162537649,
-              "hybrid": 9.228081208624404
+              "hybrid": 7.983322316934764
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -2006,57 +2044,57 @@
             "ltv": {
               "unlock": 7.119053306441306,
               "subscription": 8.213111543366878,
-              "hybrid": 9.478326646954002
+              "hybrid": 8.134535490386424
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.141333,
             "ltv": {
               "unlock": 7.272668675654885,
               "subscription": 8.479993788252607,
-              "hybrid": 9.729761556632889
+              "hybrid": 8.286268773120868
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.1505,
             "ltv": {
               "unlock": 7.426413229121319,
               "subscription": 8.744635479879342,
-              "hybrid": 9.982448317122968
+              "hybrid": 8.438581426710456
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.159667,
             "ltv": {
               "unlock": 7.580263859000371,
-              "subscription": 9.007164294445756,
-              "hybrid": 10.23636449954541
+              "subscription": 9.007164294445754,
+              "hybrid": 8.591479104126329
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.168833,
             "ltv": {
               "unlock": 7.7341981162270015,
               "subscription": 9.267689608746565,
-              "hybrid": 10.49148510863141
+              "hybrid": 8.744963979218333
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.178,
             "ltv": {
               "unlock": 7.656274230076399,
               "subscription": 8.74937441446731,
-              "hybrid": 10.305071410232049
+              "hybrid": 8.750645402392175
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -2066,123 +2104,151 @@
             "ltv": {
               "unlock": 7.799465795717735,
               "subscription": 8.97633863991378,
-              "hybrid": 10.542061975844115
+              "hybrid": 8.899006066350974
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.196333,
             "ltv": {
-              "unlock": 7.942802088282211,
+              "unlock": 7.94280208828221,
               "subscription": 9.20209129309397,
-              "hybrid": 10.780362916021595
+              "hybrid": 9.04803849280534
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.2055,
             "ltv": {
               "unlock": 8.086308745664066,
               "subscription": 9.426746970085626,
-              "hybrid": 11.02001985278023
+              "hybrid": 9.197782935622397
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.214667,
             "ltv": {
               "unlock": 8.229964946725717,
               "subscription": 9.650340005307529,
-              "hybrid": 11.26100023232171
+              "hybrid": 9.34822990183795
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.223833,
             "ltv": {
               "unlock": 8.373750198192718,
               "subscription": 9.87289973469706,
-              "hybrid": 11.503270737890729
+              "hybrid": 9.49936873340437
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.233,
             "ltv": {
               "unlock": 8.519450895221244,
               "subscription": 10.100351768490464,
-              "hybrid": 11.750324135863185
+              "hybrid": 9.652469500336812
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.242167,
             "ltv": {
               "unlock": 8.666218935176664,
               "subscription": 10.329872009097768,
-              "hybrid": 12.000503770669157
+              "hybrid": 9.806928299820996
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.251333,
             "ltv": {
               "unlock": 8.813271658963211,
               "subscription": 10.558928145331384,
-              "hybrid": 12.252281436407142
+              "hybrid": 9.962195944885057
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.2605,
             "ltv": {
               "unlock": 8.960635586830639,
               "subscription": 10.787597987977234,
-              "hybrid": 12.505701978887203
+              "hybrid": 10.11830856372319
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.269667,
             "ltv": {
               "unlock": 9.108289437849574,
               "subscription": 11.015882057821653,
-              "hybrid": 12.76072807357223
+              "hybrid": 10.275251186721784
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.278833,
             "ltv": {
               "unlock": 9.256212089459114,
               "subscription": 11.24377900122344,
-              "hybrid": 13.017321845660748
+              "hybrid": 10.433008199264878
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.288,
             "ltv": {
               "unlock": 9.404431109801719,
               "subscription": 11.471360211102565,
-              "hybrid": 13.275529641133135
+              "hybrid": 10.591615417884128
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           }
         ],
-        "switches": []
+        "switches": [
+          {
+            "between": [
+              0.123,
+              0.132167
+            ],
+            "from": "hybrid",
+            "to": "subscription",
+            "threshold": 0.126048
+          },
+          {
+            "between": [
+              0.168833,
+              0.178
+            ],
+            "from": "subscription",
+            "to": "hybrid",
+            "threshold": 0.169885
+          },
+          {
+            "between": [
+              0.178,
+              0.187167
+            ],
+            "from": "hybrid",
+            "to": "subscription",
+            "threshold": 0.178148
+          }
+        ]
       },
       "frictionSweep": {
         "values": [
@@ -2213,7 +2279,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 1.3680443382827452,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -2223,7 +2289,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 1.9710611820435506,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -2233,7 +2299,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 2.574078025804357,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -2243,7 +2309,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 3.1770948695651615,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -2253,7 +2319,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 3.780128813880196,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -2263,7 +2329,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 4.383145657641002,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -2273,7 +2339,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 4.986162501401806,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -2283,7 +2349,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 5.589179345162614,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -2293,7 +2359,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 6.192196188923417,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -2303,7 +2369,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 6.795213032684224,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -2313,7 +2379,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 7.398246976999259,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -2323,7 +2389,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.001263820760064,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -2333,7 +2399,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.60428066452087,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -2343,27 +2409,27 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 9.207297508281677,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "trialToPaid": 0.573684,
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 9.810314352042482,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "trialToPaid": 0.608947,
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 10.413331195803284,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2373,7 +2439,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 11.016365140118323,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2383,7 +2449,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 11.619381983879128,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2393,7 +2459,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 12.222398827639932,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2403,7 +2469,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 12.825415671400735,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2412,12 +2478,12 @@
         "switches": [
           {
             "between": [
-              0.573684,
-              0.608947
+              0.503158,
+              0.538421
             ],
             "from": "hybrid",
             "to": "subscription",
-            "threshold": 0.59059
+            "threshold": 0.50416
           }
         ]
       },
@@ -2449,7 +2515,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 11.613509522097125
+              "hybrid": 9.927777339209268
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -2459,7 +2525,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 11.397200676989883
+              "hybrid": 9.741198720455039
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -2469,7 +2535,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 11.180891831882635
+              "hybrid": 9.554620101700813
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -2479,7 +2545,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 10.96458298677539
+              "hybrid": 9.368041482946584
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -2489,7 +2555,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 10.748274141668146
+              "hybrid": 9.18146286419236
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -2499,7 +2565,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 10.531965296560905
+              "hybrid": 8.994884245438133
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -2509,7 +2575,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 10.31565645145366
+              "hybrid": 8.808305626683902
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -2519,7 +2585,7 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 10.099347606346416
+              "hybrid": 8.621727007929676
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -2529,121 +2595,121 @@
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 9.883038761239172
+              "hybrid": 8.43514838917545
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "switchChurn": 0.45,
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 9.66672991613193
+              "hybrid": 8.24856977042122
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "switchChurn": 0.5,
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 9.450421071024685
+              "hybrid": 8.061991151666996
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "switchChurn": 0.55,
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 9.23411222591744
+              "hybrid": 7.875412532912766
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "switchChurn": 0.6,
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 9.017803380810198
+              "hybrid": 7.688833914158542
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "switchChurn": 0.65,
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 8.801494535702956
+              "hybrid": 7.502255295404312
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "unlock"
           },
           {
             "switchChurn": 0.7,
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 8.585185690595711
+              "hybrid": 7.315676676650086
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "unlock"
           },
           {
             "switchChurn": 0.75,
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 8.368876845488467
+              "hybrid": 7.12909805789586
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "switchChurn": 0.8,
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 8.152568000381224
+              "hybrid": 6.9425194391416305
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "switchChurn": 0.85,
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 7.936259155273979
+              "hybrid": 6.755940820387404
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "switchChurn": 0.9,
             "ltv": {
               "unlock": 7.531447434590851,
               "subscription": 8.550277114267157,
-              "hybrid": 7.719950310166736
+              "hybrid": 6.569362201633178
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           }
         ],
         "switches": [
           {
             "between": [
-              0.7,
-              0.75
+              0.35,
+              0.4
             ],
             "from": "hybrid",
             "to": "subscription",
-            "threshold": 0.70806
+            "threshold": 0.36919
           }
         ]
       }
@@ -2656,19 +2722,19 @@
         "ltv": {
           "unlock": 8.302734481079954,
           "subscription": 10.195749296797441,
-          "hybrid": 11.441621016513121
+          "hybrid": 9.316671971504208
         },
-        "winner": "hybrid",
-        "runnerUp": "subscription",
+        "winner": "subscription",
+        "runnerUp": "hybrid",
         "paybackMonth": {
           "unlock": 9,
           "subscription": 7,
-          "hybrid": 3
+          "hybrid": 5
         },
         "ltvCac": {
           "unlock": 1.0378418101349942,
           "subscription": 1.2744686620996801,
-          "hybrid": 1.4302026270641401
+          "hybrid": 1.164583996438026
         }
       },
       "monthlyPriceSweep": {
@@ -2710,47 +2776,47 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 1.456535613828206,
-              "hybrid": 8.466647780051234
+              "hybrid": 6.868247944414864
             },
-            "winner": "hybrid",
-            "runnerUp": "unlock"
+            "winner": "unlock",
+            "runnerUp": "hybrid"
           },
           {
             "price": 8,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 2.913071227656412,
-              "hybrid": 8.962476652794882
+              "hybrid": 7.276318615596422
             },
-            "winner": "hybrid",
-            "runnerUp": "unlock"
+            "winner": "unlock",
+            "runnerUp": "hybrid"
           },
           {
             "price": 12,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 4.369606841484618,
-              "hybrid": 9.458305525538531
+              "hybrid": 7.684389286777979
             },
-            "winner": "hybrid",
-            "runnerUp": "unlock"
+            "winner": "unlock",
+            "runnerUp": "hybrid"
           },
           {
             "price": 16,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 5.826142455312824,
-              "hybrid": 9.954134398282177
+              "hybrid": 8.092459957959536
             },
-            "winner": "hybrid",
-            "runnerUp": "unlock"
+            "winner": "unlock",
+            "runnerUp": "hybrid"
           },
           {
             "price": 20,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 7.28267806914103,
-              "hybrid": 10.449963271025824
+              "hybrid": 8.50053062914109
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -2760,7 +2826,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 8.739213682969236,
-              "hybrid": 10.945792143769468
+              "hybrid": 8.908601300322653
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -2770,27 +2836,27 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "price": 32,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 11.652284910625648,
-              "hybrid": 11.937449889256763
+              "hybrid": 9.724742642685765
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "price": 36,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 13.10882052445385,
-              "hybrid": 12.433278762000413
+              "hybrid": 10.132813313867322
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2800,7 +2866,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 14.56535613828206,
-              "hybrid": 12.929107634744055
+              "hybrid": 10.540883985048879
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2810,7 +2876,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 16.02189175211026,
-              "hybrid": 13.424936507487704
+              "hybrid": 10.948954656230441
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2820,7 +2886,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 17.478427365938472,
-              "hybrid": 13.92076538023135
+              "hybrid": 11.357025327412
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2830,7 +2896,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 18.934962979766674,
-              "hybrid": 14.416594252974999
+              "hybrid": 11.765095998593555
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2840,7 +2906,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 20.391498593594882,
-              "hybrid": 14.912423125718643
+              "hybrid": 12.17316666977511
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2849,8 +2915,8 @@
             "price": 60,
             "ltv": {
               "unlock": 8.302734481079954,
-              "subscription": 21.848034207423083,
-              "hybrid": 15.408251998462292
+              "subscription": 21.848034207423087,
+              "hybrid": 12.581237340956669
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2860,7 +2926,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 23.304569821251295,
-              "hybrid": 15.904080871205934
+              "hybrid": 12.989308012138228
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2870,7 +2936,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 24.761105435079497,
-              "hybrid": 16.39990974394959
+              "hybrid": 13.397378683319783
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2880,7 +2946,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 26.2176410489077,
-              "hybrid": 16.89573861669324
+              "hybrid": 13.805449354501343
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2890,7 +2956,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 27.67417666273591,
-              "hybrid": 17.391567489436877
+              "hybrid": 14.2135200256829
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2900,7 +2966,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 29.13071227656412,
-              "hybrid": 17.887396362180525
+              "hybrid": 14.621590696864457
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2910,7 +2976,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 30.58724789039232,
-              "hybrid": 18.383225234924176
+              "hybrid": 15.029661368046014
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2920,7 +2986,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 32.04378350422052,
-              "hybrid": 18.879054107667823
+              "hybrid": 15.437732039227573
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2930,7 +2996,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 33.500319118048736,
-              "hybrid": 19.37488298041147
+              "hybrid": 15.845802710409128
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2940,7 +3006,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 34.956854731876945,
-              "hybrid": 19.870711853155115
+              "hybrid": 16.253873381590687
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2950,7 +3016,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 36.41339034570514,
-              "hybrid": 20.366540725898766
+              "hybrid": 16.661944052772245
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2960,7 +3026,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 37.86992595953335,
-              "hybrid": 20.86236959864241
+              "hybrid": 17.070014723953804
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2970,7 +3036,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 39.326461573361556,
-              "hybrid": 21.35819847138606
+              "hybrid": 17.478085395135356
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2980,7 +3046,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 40.782997187189764,
-              "hybrid": 21.854027344129705
+              "hybrid": 17.886156066316918
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2990,7 +3056,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 42.239532801017965,
-              "hybrid": 22.349856216873352
+              "hybrid": 18.294226737498477
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -2999,8 +3065,8 @@
             "price": 120,
             "ltv": {
               "unlock": 8.302734481079954,
-              "subscription": 43.69606841484617,
-              "hybrid": 22.845685089616993
+              "subscription": 43.696068414846174,
+              "hybrid": 18.70229740868003
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -3009,12 +3075,21 @@
         "switches": [
           {
             "between": [
-              32,
-              36
+              16,
+              20
+            ],
+            "from": "unlock",
+            "to": "hybrid",
+            "threshold": 18.25
+          },
+          {
+            "between": [
+              24,
+              28
             ],
             "from": "hybrid",
             "to": "subscription",
-            "threshold": 33.25
+            "threshold": 24.75
           }
         ]
       },
@@ -3044,10 +3119,10 @@
             "ltv": {
               "unlock": 8.974734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 12.113621016513118
+              "hybrid": 9.988671971504209
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "freeEpisodes": 2,
@@ -3055,10 +3130,10 @@
             "ltv": {
               "unlock": 8.526734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 11.665621016513121
+              "hybrid": 9.540671971504208
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "freeEpisodes": 4,
@@ -3066,21 +3141,21 @@
             "ltv": {
               "unlock": 8.078734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 11.217621016513117
+              "hybrid": 9.092671971504208
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "freeEpisodes": 6,
             "freeBlockMonths": 0.24,
             "ltv": {
-              "unlock": 7.630734481079954,
+              "unlock": 7.630734481079953,
               "subscription": 10.195749296797441,
-              "hybrid": 10.769621016513117
+              "hybrid": 8.644671971504211
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "freeEpisodes": 8,
@@ -3088,10 +3163,10 @@
             "ltv": {
               "unlock": 7.182734481079952,
               "subscription": 10.195749296797441,
-              "hybrid": 10.32162101651312
+              "hybrid": 8.196671971504209
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "freeEpisodes": 10,
@@ -3099,7 +3174,7 @@
             "ltv": {
               "unlock": 6.734734481079953,
               "subscription": 10.195749296797441,
-              "hybrid": 9.87362101651312
+              "hybrid": 7.74867197150421
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -3110,7 +3185,7 @@
             "ltv": {
               "unlock": 6.286734481079953,
               "subscription": 10.195749296797441,
-              "hybrid": 9.42562101651312
+              "hybrid": 7.30067197150421
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -3121,21 +3196,21 @@
             "ltv": {
               "unlock": 5.838734481079952,
               "subscription": 10.195749296797441,
-              "hybrid": 6.980404162441211
+              "hybrid": 5.272314583887371
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 16,
             "freeBlockMonths": 0.64,
             "ltv": {
-              "unlock": 5.390734481079954,
+              "unlock": 5.390734481079953,
               "subscription": 10.195749296797441,
-              "hybrid": 6.532404162441211
+              "hybrid": 4.8243145838873716
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 18,
@@ -3143,10 +3218,10 @@
             "ltv": {
               "unlock": 4.942734481079953,
               "subscription": 10.195749296797441,
-              "hybrid": 6.084404162441212
+              "hybrid": 4.376314583887372
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 20,
@@ -3154,10 +3229,10 @@
             "ltv": {
               "unlock": 4.494734481079953,
               "subscription": 10.195749296797441,
-              "hybrid": 5.6364041624412105
+              "hybrid": 3.9283145838873725
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 22,
@@ -3165,10 +3240,10 @@
             "ltv": {
               "unlock": 4.046734481079953,
               "subscription": 10.195749296797441,
-              "hybrid": 5.188404162441211
+              "hybrid": 3.480314583887373
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 24,
@@ -3176,10 +3251,10 @@
             "ltv": {
               "unlock": 3.5987344810799535,
               "subscription": 10.195749296797441,
-              "hybrid": 4.740404162441211
+              "hybrid": 3.0323145838873735
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 26,
@@ -3187,10 +3262,10 @@
             "ltv": {
               "unlock": 3.334414481079953,
               "subscription": 10.195749296797441,
-              "hybrid": 4.476084162441212
+              "hybrid": 2.767994583887373
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 28,
@@ -3198,10 +3273,10 @@
             "ltv": {
               "unlock": 3.253774481079953,
               "subscription": 10.195749296797441,
-              "hybrid": 4.395444162441212
+              "hybrid": 2.687354583887373
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "freeEpisodes": 30,
@@ -3209,22 +3284,13 @@
             "ltv": {
               "unlock": 3.1731344810799533,
               "subscription": 10.195749296797441,
-              "hybrid": 4.314804162441212
+              "hybrid": 2.6067145838873733
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           }
         ],
-        "switches": [
-          {
-            "between": [
-              8,
-              10
-            ],
-            "from": "hybrid",
-            "to": "subscription"
-          }
-        ]
+        "switches": []
       },
       "d30Sweep": {
         "values": [
@@ -3260,7 +3326,7 @@
             "ltv": {
               "unlock": 6.265308919724777,
               "subscription": 6.666275950436266,
-              "hybrid": 8.09758246120845
+              "hybrid": 7.297288157275222
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -3270,7 +3336,7 @@
             "ltv": {
               "unlock": 6.525828109514517,
               "subscription": 7.146369664085152,
-              "hybrid": 8.515406769834767
+              "hybrid": 7.551833058653585
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -3280,7 +3346,7 @@
             "ltv": {
               "unlock": 6.786792026317666,
               "subscription": 7.616246849472963,
-              "hybrid": 8.936546739682331
+              "hybrid": 7.807453490347861
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -3290,223 +3356,233 @@
             "ltv": {
               "unlock": 7.048160479215039,
               "subscription": 8.07755296761591,
-              "hybrid": 9.361158761651724
+              "hybrid": 8.064423406239884
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.141667,
             "ltv": {
               "unlock": 7.309876821893946,
               "subscription": 8.531457608042057,
-              "hybrid": 9.789296887181294
+              "hybrid": 8.322912510589658
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.157083,
             "ltv": {
               "unlock": 7.571888735544188,
               "subscription": 8.978846062007293,
-              "hybrid": 10.220973317078093
+              "hybrid": 8.583037183953438
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.1725,
             "ltv": {
               "unlock": 7.834201635995631,
               "subscription": 9.420498837550463,
-              "hybrid": 10.65626319663453
+              "hybrid": 8.844931960587408
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.187917,
             "ltv": {
               "unlock": 8.096774915815116,
               "subscription": 9.856971354574432,
-              "hybrid": 11.095143617370166
+              "hybrid": 9.108657893351694
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.203333,
             "ltv": {
               "unlock": 8.359571656531747,
               "subscription": 10.288718008031145,
-              "hybrid": 11.537581013889081
+              "hybrid": 9.374258891522118
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.21875,
             "ltv": {
               "unlock": 8.622609006474915,
               "subscription": 10.716199008614351,
-              "hybrid": 11.983621227518634
+              "hybrid": 9.641818170693067
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.234167,
             "ltv": {
               "unlock": 8.564701360863198,
               "subscription": 10.106911611770753,
-              "hybrid": 11.81853231720247
+              "hybrid": 9.706299155998412
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.249583,
             "ltv": {
               "unlock": 8.808457243070011,
               "subscription": 10.474871351247172,
-              "hybrid": 12.233853027778187
+              "hybrid": 9.96600145046711
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.265,
             "ltv": {
               "unlock": 9.052553340684398,
               "subscription": 10.84038043150001,
-              "hybrid": 12.652852105275237
+              "hybrid": 10.227805134204925
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.280417,
             "ltv": {
               "unlock": 9.296959557379495,
               "subscription": 11.20358410776212,
-              "hybrid": 13.075470088489498
+              "hybrid": 10.491708020981381
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.295833,
             "ltv": {
               "unlock": 9.542091083525492,
               "subscription": 11.566031362481127,
-              "hybrid": 13.50252682131052
+              "hybrid": 10.758020876258172
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.31125,
             "ltv": {
               "unlock": 9.791265450738516,
               "subscription": 11.938340122503424,
-              "hybrid": 13.940590793718524
+              "hybrid": 11.029125597671774
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.326667,
             "ltv": {
               "unlock": 10.041062004984147,
               "subscription": 12.309611814437751,
-              "hybrid": 14.382880020536577
+              "hybrid": 11.30258555591435
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.342083,
             "ltv": {
               "unlock": 10.29144934231305,
               "subscription": 12.679902577711228,
-              "hybrid": 14.829325994359937
+              "hybrid": 11.578386092085521
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.3575,
             "ltv": {
               "unlock": 10.54244590164668,
               "subscription": 13.049332187050078,
-              "hybrid": 15.279948079013932
+              "hybrid": 11.856565294571569
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.372917,
             "ltv": {
               "unlock": 10.794022386360938,
               "subscription": 13.417941122388735,
-              "hybrid": 15.734679729418632
+              "hybrid": 12.137106829675608
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.388333,
             "ltv": {
               "unlock": 11.046150215174556,
-              "subscription": 13.785763843556717,
-              "hybrid": 16.193454149091252
+              "subscription": 13.785763843556714,
+              "hybrid": 12.419993064054246
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.40375,
             "ltv": {
               "unlock": 11.298850665798332,
               "subscription": 14.152900940284377,
-              "hybrid": 16.656294742512607
+              "hybrid": 12.705260918922841
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.419167,
             "ltv": {
               "unlock": 11.55209666625808,
               "subscription": 14.519376657707998,
-              "hybrid": 17.123136525900136
+              "hybrid": 12.992891862717421
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.434583,
             "ltv": {
               "unlock": 11.805861633011526,
               "subscription": 14.885211242117077,
-              "hybrid": 17.593914209430395
+              "hybrid": 13.28286634918673
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "d30": 0.45,
             "ltv": {
               "unlock": 12.060168954960403,
               "subscription": 15.250492426567321,
-              "hybrid": 18.06865495114482
+              "hybrid": 13.575221001157662
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           }
         ],
-        "switches": []
+        "switches": [
+          {
+            "between": [
+              0.110833,
+              0.12625
+            ],
+            "from": "hybrid",
+            "to": "subscription",
+            "threshold": 0.125238
+          }
+        ]
       },
       "frictionSweep": {
         "values": [
@@ -3537,7 +3613,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 1.6313198874875907,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -3547,7 +3623,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 2.350385302393527,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -3557,7 +3633,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 3.0694507172994627,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -3567,7 +3643,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 3.788516132205399,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -3577,7 +3653,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 4.5076019386099295,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -3587,7 +3663,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 5.226667353515865,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -3597,7 +3673,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 5.945732768421801,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -3607,7 +3683,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 6.664798183327737,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -3617,7 +3693,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 7.383863598233676,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -3627,7 +3703,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 8.10292901313961,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
             "winner": "hybrid",
             "runnerUp": "unlock"
@@ -3637,7 +3713,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 8.822014819544142,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -3647,37 +3723,37 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 9.54108023445008,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "trialToPaid": 0.503158,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.260145649356012,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "trialToPaid": 0.538421,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.97921106426195,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "trialToPaid": 0.573684,
             "ltv": {
               "unlock": 8.302734481079954,
-              "subscription": 11.698276479167884,
-              "hybrid": 11.441621016513121
+              "subscription": 11.698276479167886,
+              "hybrid": 9.316671971504208
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -3687,7 +3763,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 12.417341894073822,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -3697,7 +3773,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 13.13642770047835,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -3707,7 +3783,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 13.855493115384292,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -3717,7 +3793,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 14.574558530290224,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -3727,7 +3803,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 15.29362394519616,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
             "winner": "subscription",
             "runnerUp": "hybrid"
@@ -3736,12 +3812,12 @@
         "switches": [
           {
             "between": [
-              0.538421,
-              0.573684
+              0.432632,
+              0.467895
             ],
             "from": "hybrid",
             "to": "subscription",
-            "threshold": 0.56111
+            "threshold": 0.45691
           }
         ]
       },
@@ -3773,7 +3849,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 13.310514459931477
+              "hybrid": 10.854784501342387
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -3783,7 +3859,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 13.043529682300283
+              "hybrid": 10.63505413993693
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -3793,7 +3869,7 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 12.77654490466909
+              "hybrid": 10.41532377853148
             },
             "winner": "hybrid",
             "runnerUp": "subscription"
@@ -3803,171 +3879,171 @@
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 12.509560127037894
+              "hybrid": 10.195593417126025
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "switchChurn": 0.2,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 12.2425753494067
+              "hybrid": 9.97586305572057
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "switchChurn": 0.25,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 11.975590571775506
+              "hybrid": 9.756132694315115
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "switchChurn": 0.3,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 11.70860579414431
+              "hybrid": 9.536402332909663
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "switchChurn": 0.35,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 11.441621016513121
+              "hybrid": 9.316671971504208
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "switchChurn": 0.4,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 11.174636238881924
+              "hybrid": 9.096941610098757
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "switchChurn": 0.45,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 10.907651461250728
+              "hybrid": 8.8772112486933
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "switchChurn": 0.5,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 10.640666683619532
+              "hybrid": 8.657480887287846
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "switchChurn": 0.55,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 10.373681905988338
+              "hybrid": 8.437750525882391
             },
-            "winner": "hybrid",
-            "runnerUp": "subscription"
+            "winner": "subscription",
+            "runnerUp": "hybrid"
           },
           {
             "switchChurn": 0.6,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 10.106697128357144
+              "hybrid": 8.218020164476938
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "switchChurn": 0.65,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 9.839712350725952
+              "hybrid": 7.9982898030714855
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "switchChurn": 0.7,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 9.572727573094758
+              "hybrid": 7.7785594416660295
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "switchChurn": 0.75,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 9.30574279546356
+              "hybrid": 7.558829080260578
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "switchChurn": 0.8,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 9.038758017832365
+              "hybrid": 7.339098718855122
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "switchChurn": 0.85,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 8.771773240201172
+              "hybrid": 7.119368357449669
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           },
           {
             "switchChurn": 0.9,
             "ltv": {
               "unlock": 8.302734481079954,
               "subscription": 10.195749296797441,
-              "hybrid": 8.504788462569977
+              "hybrid": 6.899637996044214
             },
             "winner": "subscription",
-            "runnerUp": "hybrid"
+            "runnerUp": "unlock"
           }
         ],
         "switches": [
           {
             "between": [
-              0.55,
-              0.6
+              0.1,
+              0.15
             ],
             "from": "hybrid",
             "to": "subscription",
-            "threshold": 0.58335
+            "threshold": 0.14995
           }
         ]
       }

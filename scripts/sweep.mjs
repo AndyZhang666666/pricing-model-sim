@@ -7,19 +7,32 @@
 // 用法：npm run sweep      → results/sweep.json
 
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { MODEL_VERSION } from "../lib/model.js";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { mergeParams, buildContext, simulateMechanism, MECHANISMS } from "../lib/model.js";
+import {
+  mergeParams,
+  buildContext,
+  simulateMechanism,
+  MECHANISMS,
+} from "../lib/model.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, "..");
 
-const presets = JSON.parse(readFileSync(resolve(ROOT, "data/presets.json"), "utf8"));
+const presets = JSON.parse(
+  readFileSync(resolve(ROOT, "data/presets.json"), "utf8"),
+);
 
 // 扫描用的基准参数：与 DEFAULT_PARAMS 一致，只改被扫的那一项。
 const BASE = {
-  common: { newUsersPerMonth: 30000, cac: 8, platformCut: 0.3, discountMonthly: 0 },
+  common: {
+    newUsersPerMonth: 30000,
+    cac: 8,
+    platformCut: 0.3,
+    discountMonthly: 0,
+  },
 };
 
 // 扫描时统一的订阅人群粘性指数。与 DEFAULT_RETENTION.alpha 保持一致。
@@ -36,7 +49,10 @@ function baseParams(overrides = {}) {
 }
 
 function runAll(retention, params) {
-  const ctx = buildContext({ ...retention, alpha: retention.alpha ?? SWEEP_ALPHA }, 12);
+  const ctx = buildContext(
+    { ...retention, alpha: retention.alpha ?? SWEEP_ALPHA },
+    12,
+  );
   const out = {};
   for (const kind of MECHANISMS) {
     out[kind] = simulateMechanism(kind, ctx, params).summary;
@@ -50,7 +66,9 @@ function rank(runs) {
 
 function linspace(from, to, count) {
   const step = (to - from) / (count - 1);
-  return Array.from({ length: count }, (_, i) => Number((from + i * step).toPrecision(6)));
+  return Array.from({ length: count }, (_, i) =>
+    Number((from + i * step).toPrecision(6)),
+  );
 }
 
 // ── 扫描 1：月费 ────────────────────────────────────────────────────
@@ -58,7 +76,10 @@ function linspace(from, to, count) {
 function sweepMonthlyPrice(preset) {
   const values = linspace(4, 120, 30);
   const rows = values.map((price) => {
-    const params = baseParams({ subscription: { monthlyPrice: price }, hybrid: {} });
+    const params = baseParams({
+      subscription: { monthlyPrice: price },
+      hybrid: {},
+    });
     const runs = runAll(preset, params);
     const order = rank(runs);
     return {
@@ -90,7 +111,10 @@ function sweepMonthlyPrice(preset) {
   const refined = switches.map((s) => {
     let lo = s.between[0];
     let hi = s.between[1];
-    const winnerAt = (p) => rank(runAll(preset, baseParams({ subscription: { monthlyPrice: p } })))[0];
+    const winnerAt = (p) =>
+      rank(
+        runAll(preset, baseParams({ subscription: { monthlyPrice: p } })),
+      )[0];
     for (let iter = 0; iter < 30 && hi - lo > 0.5; iter++) {
       const mid = (lo + hi) / 2;
       if (winnerAt(mid) === s.to) hi = mid;
@@ -193,7 +217,9 @@ function sweepD30(preset) {
     const evalAt = (d30) => {
       const scale = d30 / baseD30;
       const anchors = baseAnchors.map((a) =>
-        a.day === 1 ? a : { day: a.day, retention: Math.min(d1, a.retention * scale) },
+        a.day === 1
+          ? a
+          : { day: a.day, retention: Math.min(d1, a.retention * scale) },
       );
       return rank(runAll({ ...preset, anchors }, baseParams()))[0];
     };
@@ -224,7 +250,10 @@ function sweepSubscriptionFriction(preset) {
     // 只扫试用转化率。分流率 switchRate 保持默认不动——分流率由产品设计决定
     // （推荐位放在哪、推得凶不凶），不是用户对订阅的态度决定的。刻意不联动，
     // 避免把两个不同的东西揉成一个参数。
-    const runs = runAll(preset, baseParams({ subscription: { trialToPaid: conv } }));
+    const runs = runAll(
+      preset,
+      baseParams({ subscription: { trialToPaid: conv } }),
+    );
     const order = rank(runs);
     return {
       trialToPaid: conv,
@@ -250,7 +279,8 @@ function sweepSubscriptionFriction(preset) {
   }
 
   const refined = switches.map((s) => {
-    const evalAt = (v) => rank(runAll(preset, baseParams({ subscription: { trialToPaid: v } })))[0];
+    const evalAt = (v) =>
+      rank(runAll(preset, baseParams({ subscription: { trialToPaid: v } })))[0];
     let lo = s.between[0];
     let hi = s.between[1];
     for (let iter = 0; iter < 30 && hi - lo > 1e-4; iter++) {
@@ -298,7 +328,8 @@ function sweepSwitchChurn(preset) {
   }
 
   const refined = switches.map((s) => {
-    const evalAt = (v) => rank(runAll(preset, baseParams({ hybrid: { switchChurn: v } })))[0];
+    const evalAt = (v) =>
+      rank(runAll(preset, baseParams({ hybrid: { switchChurn: v } })))[0];
     let lo = s.between[0];
     let hi = s.between[1];
     for (let iter = 0; iter < 30 && hi - lo > 1e-4; iter++) {
@@ -317,7 +348,7 @@ const output = {
   generatedBy: "scripts/sweep.mjs",
   // 只记录日期：这些产物是确定性的（没有随机数），秒级时间戳只会让每次重跑产生
   // 一行无意义的 git diff，掩盖真正的数据变化。
-  generatedAt: new Date().toISOString().slice(0, 10),
+  modelVersion: MODEL_VERSION,
   baseParams: BASE,
   presets: [],
 };
@@ -371,19 +402,30 @@ for (const preset of presets.presets) {
     console.log(`  月费 ¥${s.threshold} 处：${s.from} → ${s.to}`);
   }
   for (const s of byD30.switches) {
-    console.log(`  D30 ${(s.threshold * 100).toFixed(2)}% 处：${s.from} → ${s.to}`);
+    console.log(
+      `  D30 ${(s.threshold * 100).toFixed(2)}% 处：${s.from} → ${s.to}`,
+    );
   }
   for (const s of byFree.switches) {
-    console.log(`  免费 ${s.between[0]}~${s.between[1]} 集处：${s.from} → ${s.to}`);
+    console.log(
+      `  免费 ${s.between[0]}~${s.between[1]} 集处：${s.from} → ${s.to}`,
+    );
   }
   for (const s of byFriction.switches) {
-    console.log(`  订阅转化率 ${(s.threshold * 100).toFixed(1)}% 处：${s.from} → ${s.to}`);
+    console.log(
+      `  订阅转化率 ${(s.threshold * 100).toFixed(1)}% 处：${s.from} → ${s.to}`,
+    );
   }
   for (const s of byChurn.switches) {
-    console.log(`  切换摩擦 ${(s.threshold * 100).toFixed(1)}% 处：${s.from} → ${s.to}`);
+    console.log(
+      `  切换摩擦 ${(s.threshold * 100).toFixed(1)}% 处：${s.from} → ${s.to}`,
+    );
   }
 }
 
 mkdirSync(resolve(ROOT, "results"), { recursive: true });
-writeFileSync(resolve(ROOT, "results/sweep.json"), JSON.stringify(output, null, 2) + "\n");
+writeFileSync(
+  resolve(ROOT, "results/sweep.json"),
+  JSON.stringify(output, null, 2) + "\n",
+);
 console.log("\n已写出 results/sweep.json");

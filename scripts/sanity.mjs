@@ -9,6 +9,7 @@
 // 用法：npm run sanity      → results/sanity.json
 
 import { writeFileSync, mkdirSync } from "node:fs";
+import { MODEL_VERSION } from "../lib/model.js";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -43,7 +44,12 @@ function compare(name, a, b, relTolerance, note) {
 // 单集 ¥1 × 月均 3 集 = 月付 ¥3。两边都不设试用、不设白嫖期、无抽成、无折现。
 // 一个用户 12 个月里：解锁给 3 × 12 = 36，订阅也给 3 × 12 = 36。
 const equiv = {
-  common: { cac: 0, platformCut: 0, discountMonthly: 0, newUsersPerMonth: 1000 },
+  common: {
+    cac: 0,
+    platformCut: 0,
+    discountMonthly: 0,
+    newUsersPerMonth: 1000,
+  },
   unlock: {
     pricePerUnlock: 1,
     unlocksPerPayerMonth: 3,
@@ -52,7 +58,12 @@ const equiv = {
     freeEpisodes: 0,
     episodesPerMonth: 25,
   },
-  subscription: { monthlyPrice: 3, trialDays: 0, trialOptIn: 1, trialToPaid: 1 },
+  subscription: {
+    monthlyPrice: 3,
+    trialDays: 0,
+    trialOptIn: 1,
+    trialToPaid: 1,
+  },
   hybrid: { unlockThreshold: 6, switchRate: 0 },
 };
 const params = mergeParams(equiv);
@@ -80,10 +91,16 @@ compare(
 // 第 m 月总收入 = 当月新增 × Σ_{k≤m} revUnit(k)。
 // 反推：Σ_{k≤m} revUnit(k) 应当等于 monthly[m].revenue / newUsers。
 // 这条是「别把批次循环写错」的防线——错一个下标这里立刻差一个 revUnit。
-for (const [kind, res] of [["unlock", unlockRes], ["subscription", subRes], ["hybrid", hybridRes]]) {
+for (const [kind, res] of [
+  ["unlock", unlockRes],
+  ["subscription", subRes],
+  ["hybrid", hybridRes],
+]) {
   let ok = true;
   for (let i = 0; i < res.monthly.length; i++) {
-    const expected = res.revUnit.slice(0, i + 1).reduce((a, b) => a + b, 0) * equiv.common.newUsersPerMonth;
+    const expected =
+      res.revUnit.slice(0, i + 1).reduce((a, b) => a + b, 0) *
+      equiv.common.newUsersPerMonth;
     if (Math.abs(expected - res.monthly[i].revenue) > 1e-6) ok = false;
   }
   checks.push({
@@ -99,7 +116,10 @@ for (const [kind, res] of [["unlock", unlockRes], ["subscription", subRes], ["hy
 
 // ── 守恒 3：抽成对三种机制的影响必须同比例 ───────────────────────────
 // 抽成从 0 提到 30%，三种机制的 LTV 都应恰好乘 0.7。若某个机制漏乘，比例会偏。
-const cutCheckParams = mergeParams({ ...equiv, common: { ...equiv.common, platformCut: 0.3 } });
+const cutCheckParams = mergeParams({
+  ...equiv,
+  common: { ...equiv.common, platformCut: 0.3 },
+});
 const ratios = {};
 for (const kind of ["unlock", "subscription", "hybrid"]) {
   const base = simulateMechanism(kind, flatCtx, params).summary.ltv12;
@@ -132,14 +152,18 @@ const realCtx = buildContext(
   },
   12,
 );
-const realParams = mergeParams({ common: { cac: 0, platformCut: 0, discountMonthly: 0 } });
+const realParams = mergeParams({
+  common: { cac: 0, platformCut: 0, discountMonthly: 0 },
+});
 const realRows = [];
 for (const kind of ["unlock", "subscription", "hybrid"]) {
   const res = simulateMechanism(kind, realCtx, realParams);
   // 上界：假设用户从第 1 个月起、每个月都付满 max(月费, 月均解锁收入)，且只按留存存活。
   const upper =
-    Math.max(realParams.subscription.monthlyPrice, realParams.unlock.pricePerUnlock * realParams.unlock.unlocksPerPayerMonth) *
-    realCtx.S.reduce((a, b) => a + b, 0);
+    Math.max(
+      realParams.subscription.monthlyPrice,
+      realParams.unlock.pricePerUnlock * realParams.unlock.unlocksPerPayerMonth,
+    ) * realCtx.S.reduce((a, b) => a + b, 0);
   realRows.push({
     kind,
     ltv12: res.summary.ltv12,
@@ -167,7 +191,9 @@ for (const rate of [0, 0.05, 0.1]) {
   );
   discRows.push({ rate, ltv12: res.summary.ltv12 });
 }
-const discMonotone = discRows.every((row, i) => i === 0 || row.ltv12 < discRows[i - 1].ltv12);
+const discMonotone = discRows.every(
+  (row, i) => i === 0 || row.ltv12 < discRows[i - 1].ltv12,
+);
 checks.push({
   name: "折现单调性 · 折现率 0% → 5% → 10%，LTV 严格递减",
   a: discRows[0].ltv12,
@@ -185,12 +211,13 @@ const out = {
   generatedBy: "scripts/sanity.mjs",
   // 只记录日期：这些产物是确定性的（没有随机数），秒级时间戳只会让每次重跑产生
   // 一行无意义的 git diff，掩盖真正的数据变化。
-  generatedAt: new Date().toISOString().slice(0, 10),
+  modelVersion: MODEL_VERSION,
   summary: { total: checks.length, passed, failed },
   equivalencePrice: {
     pricePerUnlock: equiv.unlock.pricePerUnlock,
     unlocksPerPayerMonth: equiv.unlock.unlocksPerPayerMonth,
-    impliedMonthlyPrice: equiv.unlock.pricePerUnlock * equiv.unlock.unlocksPerPayerMonth,
+    impliedMonthlyPrice:
+      equiv.unlock.pricePerUnlock * equiv.unlock.unlocksPerPayerMonth,
   },
   platformCutRatios: ratios,
   realCurveLtv: realRows,
@@ -199,11 +226,16 @@ const out = {
 };
 
 mkdirSync(resolve(ROOT, "results"), { recursive: true });
-writeFileSync(resolve(ROOT, "results/sanity.json"), JSON.stringify(out, null, 2) + "\n");
+writeFileSync(
+  resolve(ROOT, "results/sanity.json"),
+  JSON.stringify(out, null, 2) + "\n",
+);
 
 console.log(`守恒检查：${passed}/${checks.length} 通过`);
 for (const c of checks.filter((x) => !x.pass)) {
-  console.log(`  ✗ ${c.name}\n    a=${c.a} b=${c.b} 相对差=${(c.relativeDiff * 100).toFixed(6)}%`);
+  console.log(
+    `  ✗ ${c.name}\n    a=${c.a} b=${c.b} 相对差=${(c.relativeDiff * 100).toFixed(6)}%`,
+  );
 }
 if (failed > 0) {
   console.error(`\n有 ${failed} 条守恒检查失败，说明模型有 bug，修好再提交。`);

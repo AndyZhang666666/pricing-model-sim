@@ -1,6 +1,6 @@
 {
   "generatedBy": "scripts/sanity.mjs",
-  "generatedAt": "2026-09-13",
+  "modelVersion": "conserved-cohort-v2-2026-10-25",
   "summary": {
     "total": 12,
     "passed": 12,
@@ -25,13 +25,13 @@
     },
     {
       "kind": "subscription",
-      "ltv12": 17.41040773453971,
+      "ltv12": 17.410407734539717,
       "upperBound": 42.74002121543251,
       "withinBound": true
     },
     {
       "kind": "hybrid",
-      "ltv12": 14.56441936423488,
+      "ltv12": 12.65026807716266,
       "upperBound": 42.74002121543251,
       "withinBound": true
     }
@@ -39,7 +39,7 @@
   "discountCurve": [
     {
       "rate": 0,
-      "ltv12": 17.41040773453971
+      "ltv12": 17.410407734539717
     },
     {
       "rate": 0.05,
@@ -134,7 +134,7 @@
     },
     {
       "name": "量级上界 · subscription · LTV 不超过\"全员满额付费\"上界",
-      "a": 17.41040773453971,
+      "a": 17.410407734539717,
       "b": 42.74002121543251,
       "relativeDiff": 0,
       "relTolerance": 0,
@@ -143,7 +143,7 @@
     },
     {
       "name": "量级上界 · hybrid · LTV 不超过\"全员满额付费\"上界",
-      "a": 14.56441936423488,
+      "a": 12.65026807716266,
       "b": 42.74002121543251,
       "relativeDiff": 0,
       "relTolerance": 0,
@@ -152,7 +152,7 @@
     },
     {
       "name": "折现单调性 · 折现率 0% → 5% → 10%，LTV 严格递减",
-      "a": 17.41040773453971,
+      "a": 17.410407734539717,
       "b": 13.108676304897633,
       "relativeDiff": 0,
       "relTolerance": 0,

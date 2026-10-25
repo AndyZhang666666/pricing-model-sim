@@ -7,10 +7,18 @@
 // 数据来源 data/cases.json，明确标注合成。
 
 import { useMemo } from "react";
-import { mergeParams, buildContext, simulateMechanism, MECHANISMS, MECHANISM_LABELS } from "@/lib/model";
+import {
+  mergeParams,
+  buildContext,
+  simulateMechanism,
+  MECHANISMS,
+  MECHANISM_LABELS,
+} from "@/lib/model";
+import DataTable from "./data-table";
 
 const SHORT = { unlock: "单次解锁", subscription: "包月订阅", hybrid: "混合" };
-const fmt = (v, d = 2) => (v === null || v === undefined ? "—" : Number(v).toFixed(d));
+const fmt = (v, d = 2) =>
+  v === null || v === undefined ? "—" : Number(v).toFixed(d);
 
 export default function Cases({ cases, presets, onLoad }) {
   // presets 是 data/presets.json 的整个对象：{ alpha, presets: [...] }，不是数组。
@@ -23,8 +31,9 @@ export default function Cases({ cases, presets, onLoad }) {
   return (
     <div>
       <div className="note" style={{ marginBottom: 16 }}>
-        以下 4 个案例的留存曲线与全部参数均为<b>合成数据</b>，由公开行业常识范围内的经验估计构造，
-        不来自任何真实产品的后台。生成规则见 <span className="mono">data/GENERATION.md</span>。
+        以下 4 个案例的留存曲线与全部参数均为<b>作者构造的合成假设</b>
+        ，用于观察模型响应， 不来自任何真实产品的后台。生成规则见{" "}
+        <span className="mono">data/GENERATION.md</span>。
         点评是针对模型输出的判断，不构成对任何具体产品的建议。
       </div>
 
@@ -34,18 +43,25 @@ export default function Cases({ cases, presets, onLoad }) {
             ? c.customRetention
             : (() => {
                 const p = presetById[c.retentionPreset];
-                return { anchors: p?.anchors ?? [], alpha: presets.alpha ?? 0.85, name: p?.name };
+                return {
+                  anchors: p?.anchors ?? [],
+                  alpha: presets.alpha ?? 0.85,
+                  name: p?.name,
+                };
               })();
 
         const sim = (() => {
           const params = mergeParams(c.params);
           const ctx = buildContext(retention, 12);
           const out = {};
-          for (const k of MECHANISMS) out[k] = simulateMechanism(k, ctx, params).summary;
+          for (const k of MECHANISMS)
+            out[k] = simulateMechanism(k, ctx, params).summary;
           return { params, ctx, out };
         })();
 
-        const order = MECHANISMS.slice().sort((a, b) => sim.out[b].ltv12 - sim.out[a].ltv12);
+        const order = MECHANISMS.slice().sort(
+          (a, b) => sim.out[b].ltv12 - sim.out[a].ltv12,
+        );
         const d30 = sim.ctx.curve.r(30);
         const anyPayback = order.some((k) => sim.out[k].paybackMonth);
 
@@ -55,18 +71,34 @@ export default function Cases({ cases, presets, onLoad }) {
             <p className="scenario">{c.scenario}</p>
 
             <div className="metrics">
-              <div>D30 留存<b>{(d30 * 100).toFixed(1)}%</b></div>
-              <div>CAC<b>¥{sim.params.common.cac}</b></div>
+              <div>
+                D30 留存<b>{(d30 * 100).toFixed(1)}%</b>
+              </div>
+              <div>
+                CAC<b>¥{sim.params.common.cac}</b>
+              </div>
               {order.map((k, i) => (
                 <div key={k}>
-                  {SHORT[k]} LTV{i === 0 ? "（最优）" : ""}
-                  <b style={{ color: i === 0 ? "var(--ok)" : undefined }}>¥{fmt(sim.out[k].ltv12)}</b>
+                  {SHORT[k]} LTV{i === 0 ? "（当前假设较高）" : ""}
+                  <b style={{ color: i === 0 ? "var(--ok)" : undefined }}>
+                    ¥{fmt(sim.out[k].ltv12)}
+                  </b>
                 </div>
               ))}
-              <div>回本<b>{anyPayback ? order.map((k) => sim.out[k].paybackMonth).filter(Boolean).sort((a, b) => a - b)[0] + " 个月" : "12 个月内无"}</b></div>
+              <div>
+                回本
+                <b>
+                  {anyPayback
+                    ? order
+                        .map((k) => sim.out[k].paybackMonth)
+                        .filter(Boolean)
+                        .sort((a, b) => a - b)[0] + " 个月"
+                    : "12 个月内无"}
+                </b>
+              </div>
             </div>
 
-            <table style={{ marginTop: 4 }}>
+            <DataTable label={c.title + "计算摘要"} style={{ marginTop: 4 }}>
               <thead>
                 <tr>
                   <th>机制</th>
@@ -80,12 +112,20 @@ export default function Cases({ cases, presets, onLoad }) {
                   <tr key={k} className={k === order[0] ? "win" : ""}>
                     <td>{MECHANISM_LABELS[k]}</td>
                     <td className="num">¥{fmt(sim.out[k].ltv12)}</td>
-                    <td className="num">{sim.out[k].ltvCac ? fmt(sim.out[k].ltvCac) : "—"}</td>
-                    <td className="num">{sim.out[k].paybackMonth ? `${sim.out[k].paybackMonth} 月` : "> 12 月"}</td>
+                    <td className="num">
+                      {sim.out[k].ltvCac !== null
+                        ? fmt(sim.out[k].ltvCac)
+                        : "—"}
+                    </td>
+                    <td className="num">
+                      {sim.out[k].paybackMonth
+                        ? `${sim.out[k].paybackMonth} 月`
+                        : "> 12 月"}
+                    </td>
                   </tr>
                 ))}
               </tbody>
-            </table>
+            </DataTable>
 
             <div className="comment">
               <b>我的点评</b>

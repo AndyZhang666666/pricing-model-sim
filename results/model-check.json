@@ -1,6 +1,6 @@
 {
   "generatedBy": "scripts/test-model.mjs",
-  "generatedAt": "2026-09-13",
+  "modelVersion": "conserved-cohort-v2-2026-10-25",
   "summary": {
     "total": 26,
     "passed": 26,
@@ -149,7 +149,7 @@
       "actual": true,
       "tolerance": 0,
       "pass": true,
-      "note": "实际 861.0000，月费 110 高于单集 1 元，转订阅后必然更赚"
+      "note": "实际 789.5000，月费 110 高于单集 1 元，转订阅后必然更赚"
     },
     {
       "name": "月费 10 → 20，订阅 LTV 精确翻倍（价格线性）",
