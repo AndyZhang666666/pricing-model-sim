@@ -1,4 +1,27 @@
-# Pricing Model Sim
+# Pricing Model Sim · 付费机制模拟器
+
+[在线体验](https://andyzhang666666.github.io/pricing-model-sim/) · [English](README.en.md) · [作品索引](https://github.com/AndyZhang666666/AndyZhang666666/blob/main/PROJECTS.md)
+
+从单次解锁改成订阅，比较的还是同一批用户吗？
+
+![Pricing Model Sim · 付费机制模拟器的实际产品界面](https://andyzhang666666.github.io/assets/work/showcase/pricing-crop.jpg)
+
+## 值得看的设计
+
+- 先固定新增用户分母，再追踪解锁、订阅和退出。
+- 切换后的人不能在原人群里反复产生收入。
+- 扫描只改变一个字段，其余输入保持不变。
+
+## 建议体验路径
+
+1. 选择留存预设，或输入自己的留存与付费假设。
+2. 比较三种机制，展开逐月人群、渠道收入和折现回本。
+3. 一次扫描一个假设，导出模型版本、输入与结果。
+
+**运行方式：** 条件收入模型，无需 Key。价格变化不会自动改变转化或留存；输入未被真实业务校准，不输出真实最优价。
+
+<details>
+<summary>展开实现、模型与验证记录</summary>
 
 [在线体验](https://andyzhang666666.github.io/pricing-model-sim/) · [模型假设](docs/ASSUMPTIONS.md) · [产品取舍](docs/DECISIONS.md) · [验收记录](docs/VALIDATION.md)
 
@@ -68,3 +91,5 @@ TEST_URL=http://localhost:8804/pricing-model-sim/ node scripts/test-browser.mjs
 PLAYWRIGHT_MODULE 可指定模块路径，EVIDENCE_DIR 可指定截图和导出目录。脚本覆盖锚点零值 / 单调 / 确认取消、单字段扫描、零价并列、零 CAC、逐月守恒、案例载入与刷新、四工作区四种宽度、损坏/禁用存储与键盘操作。
 
 MIT，沿用既有许可。所有案例与预设均为合成假设，不是用户实测或业务成果。
+
+</details>
