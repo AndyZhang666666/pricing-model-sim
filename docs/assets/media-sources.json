@@ -1,0 +1,13 @@
+[
+  {
+    "file": "pricing-preview.jpg",
+    "source": "https://andyzhang666666.github.io/pricing-model-sim/#compare",
+    "captured": "2026-10-31",
+    "viewport": [
+      1280,
+      720
+    ],
+    "mode": "Local conditional model, common new-user denominator, default assumptions. Not observed revenue or a pricing recommendation.",
+    "sha256": "a6e78158a125d5ea934804b322f6365bdc09589c9438d4318b410499060236a5"
+  }
+]

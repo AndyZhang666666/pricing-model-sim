@@ -4,9 +4,13 @@
 
 从单次解锁改成订阅，比较的还是同一批用户吗？
 
-![Pricing Model Sim · 付费机制模拟器的实际产品界面](https://andyzhang666666.github.io/assets/work/showcase/pricing-crop.jpg)
+![Pricing Model Sim · 付费机制模拟器的实际产品界面](docs/assets/pricing-preview.jpg)
 
-## 值得看的设计
+<!-- github-evidence-20261031 -->
+
+[设计取舍](docs/DECISIONS.md) · [验证说明](docs/VALIDATION.md) · [PR 核心检查](https://github.com/AndyZhang666666/pricing-model-sim/actions/workflows/checks.yml)
+
+## 三种付费方式，同一批用户
 
 - 先固定新增用户分母，再追踪解锁、订阅和退出。
 - 切换后的人不能在原人群里反复产生收入。
@@ -19,6 +23,26 @@
 3. 一次扫描一个假设，导出模型版本、输入与结果。
 
 **运行方式：** 条件收入模型，无需 Key。价格变化不会自动改变转化或留存；输入未被真实业务校准，不输出真实最优价。
+
+## 本地启动与检查
+
+在完整仓库根目录运行，按 CI 使用 Node.js 20：
+
+```sh
+npm ci
+npm run dev
+```
+
+打开 `http://localhost:3000/pricing-model-sim/`，保留仓库路径。解锁、订阅和混合模式共用初始用户池；修改假设后能比较逐月收入和折现回本。 默认体验无需模型密钥。
+
+已有的确定性检查可以单独运行：
+
+```sh
+npm run test-model
+npm run sanity
+```
+
+PR 工作流复用这些检查并完成静态构建；部署仍只由 `main` 的 Pages 工作流执行。上述检查不调用付费模型，也不代表模型效果评测。
 
 <details>
 <summary>展开实现、模型与验证记录</summary>

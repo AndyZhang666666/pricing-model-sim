@@ -4,9 +4,13 @@
 
 When comparing unlocks and subscriptions, are we still counting the same users?
 
-![Actual Pricing Model Sim interface](https://andyzhang666666.github.io/assets/work/showcase/pricing-crop.jpg)
+![Actual Pricing Model Sim interface](docs/assets/pricing-preview.jpg)
 
-## Product decisions
+<!-- github-evidence-20261031 -->
+
+[Design decisions](docs/DECISIONS.md) · [Validation records](docs/VALIDATION.md) · [PR core checks](https://github.com/AndyZhang666666/pricing-model-sim/actions/workflows/checks.yml)
+
+## Three payment models, one starting cohort
 
 - Fix the starting cohort before tracing unlocks, subscriptions and exits.
 - A user who switches or leaves cannot repeatedly reappear in the original pool.
@@ -33,7 +37,7 @@ npm run dev
 
 Open `http://localhost:3000/pricing-model-sim/`. The repository base path is part of the URL.
 
-## Lightweight checks
+## Reproduce the core checks
 
 ```sh
 npm run test-model
@@ -52,3 +56,5 @@ These commands are provided for reproduction; this documentation update did not 
 - [Implementation details and original records, Chinese](README.md)
 
 Use the repository’s existing licence and notices. This update does not change usage rights.
+
+[PR core checks](https://github.com/AndyZhang666666/pricing-model-sim/actions/workflows/checks.yml) reuse the deterministic checks and static build. Only the main-branch Pages workflow deploys.
