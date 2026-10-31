@@ -1,0 +1,36 @@
+name: Product checks
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  core:
+    name: Core checks and static build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Run existing deterministic checks and build
+        run: |
+          npm run test-model
+          npm run sanity
+          npm run build
+
+      # This workflow never deploys Pages or invokes a paid model.
+      # Deployment remains in pages.yml and is restricted to main.
+
