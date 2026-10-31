@@ -48,6 +48,8 @@ jobs:
           path: out
 
   deploy:
+    # Manual runs may build another branch, but only main may publish.
+    if: github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     environment:
